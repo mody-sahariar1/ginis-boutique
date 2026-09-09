@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4">Custom Order Request</h1>
+<form method="post" class="col-md-6">
+  <div class="mb-3">
+    <label class="form-label">Your Name</label>
+    <input type="text" class="form-control" name="customer_name" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Phone or Email</label>
+    <input type="text" class="form-control" name="contact" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">What do you need?</label>
+    <textarea class="form-control" name="details" rows="4" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit Request</button>
+</form>
+{% endblock %}

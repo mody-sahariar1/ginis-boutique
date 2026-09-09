@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4">Admin Dashboard</h1>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="card text-bg-success">
+      <div class="card-body">
+        <h6 class="card-title">Total Revenue</h6>
+        <p class="fs-4 fw-bold">₹{{ "%.2f"|format(total_revenue) }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-bg-danger">
+      <div class="card-body">
+        <h6 class="card-title">Total Expenses</h6>
+        <p class="fs-4 fw-bold">₹{{ "%.2f"|format(total_expenses) }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-bg-primary">
+      <div class="card-body">
+        <h6 class="card-title">Cash on Hand</h6>
+        <p class="fs-4 fw-bold">₹{{ "%.2f"|format(cash_on_hand) }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex gap-2 mb-4">
+  <a href="{{ url_for('admin_product_new') }}" class="btn btn-primary">+ Add Product</a>
+  <a href="{{ url_for('admin_sale_new') }}" class="btn btn-success">+ Record Sale</a>
+  <a href="{{ url_for('admin_expense_new') }}" class="btn btn-warning">+ Record Expense</a>
+</div>
+
+{% if low_stock %}
+<div class="alert alert-warning">
+  <strong>Low stock alert:</strong>
+  {{ low_stock|map(attribute='name')|join(', ') }}
+</div>
+{% endif %}
+
+<h2 class="mb-3">Sales — Last 30 Days</h2>
+<div class="mb-5" style="max-width: 100%;">
+  <canvas id="salesChart" height="80"></canvas>
+</div>
+
+<h2 class="mb-3">Inventory</h2>
+<div class="table-responsive mb-5">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th>Name</th><th>Category</th><th>Size</th><th>Price</th><th>Stock</th><th>Sold</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in products %}
+      <tr class="{{ 'table-warning' if p.is_low_stock else '' }}">
+        <td>{{ p.name }}</td>
+        <td>{{ p.category }}</td>
+        <td>{{ p.size or '-' }}</td>
+        <td>₹{{ "%.2f"|format(p.price) }}</td>
+        <td>{{ p.quantity }}</td>
+        <td>{{ p.units_sold }}</td>
+        <td>
+          <a href="{{ url_for('admin_product_edit', product_id=p.id) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+          <form method="post" action="{{ url_for('admin_product_delete', product_id=p.id) }}" class="d-inline"
+                onsubmit="return confirm('Delete this product?');">
+            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<h2 class="mb-3">Pending Custom Order Requests</h2>
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr><th>Name</th><th>Contact</th><th>Details</th><th></th></tr>
+    </thead>
+    <tbody>
+      {% for r in pending_requests %}
+      <tr>
+        <td>{{ r.customer_name }}</td>
+        <td>{{ r.contact }}</td>
+        <td>{{ r.details }}</td>
+        <td>
+          <form method="post" action="{{ url_for('admin_request_fulfill', request_id=r.id) }}">
+            <button type="submit" class="btn btn-sm btn-outline-success">Mark Fulfilled</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4" class="text-muted">No pending requests.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+  new Chart(document.getElementById("salesChart"), {
+    type: "line",
+    data: {
+      labels: {{ chart_labels|tojson }},
+      datasets: [{
+        label: "Revenue (₹)",
+        data: {{ chart_values|tojson }},
+        borderColor: "#0d6efd",
+        backgroundColor: "rgba(13, 110, 253, 0.15)",
+        fill: true,
+        tension: 0.25,
+        pointRadius: 2,
+      }],
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } },
+    },
+  });
+</script>
+{% endblock %}

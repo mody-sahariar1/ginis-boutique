@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="p-5 mb-4 bg-body-tertiary rounded-3 text-center">
+  <h1 class="display-5 fw-bold">MODI'S CLOTHS SHOP</h1>
+  <p class="fs-5">Kids wear, uniforms, sports kits, shirts, frocks & more.</p>
+  <a class="btn btn-primary btn-lg" href="{{ url_for('catalog') }}">Browse Catalog</a>
+</div>
+
+<h2 class="mb-3">Featured Items</h2>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  {% for product in featured %}
+  <div class="col">
+    <div class="card h-100">
+      {% if product.image_url %}
+      <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text text-muted">{{ product.category }}{% if product.size %} · {{ product.size }}{% endif %}</p>
+        <p class="card-text fw-bold">₹{{ "%.2f"|format(product.price) }}</p>
+        <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-outline-primary btn-sm">View</a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p class="text-muted">No products yet. Add some from the admin dashboard.</p>
+  {% endfor %}
+</div>
+{% endblock %}

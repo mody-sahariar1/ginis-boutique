@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4">{{ 'Edit' if product else 'Add' }} Product</h1>
+<form method="post" enctype="multipart/form-data" class="col-md-6">
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input type="text" class="form-control" name="name" value="{{ product.name if product else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Category</label>
+    <input type="text" class="form-control" name="category" value="{{ product.category if product else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Size</label>
+    <input type="text" class="form-control" name="size" value="{{ product.size if product else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Material</label>
+    <input type="text" class="form-control" name="material" value="{{ product.material if product else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Price</label>
+    <input type="number" step="0.01" min="0" class="form-control" name="price" value="{{ product.price if product else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Quantity</label>
+    <input type="number" min="0" class="form-control" name="quantity" value="{{ product.quantity if product else 0 }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Upload Image</label>
+    <input type="file" class="form-control" name="image_file" accept="image/png,image/jpeg,image/webp,image/gif">
+    {% if product and product.image_url %}
+    <div class="form-text">Current image:</div>
+    <img src="{{ product.image_url }}" alt="{{ product.name }}" style="max-height:100px" class="mt-1 rounded">
+    {% endif %}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Or Image URL (used only if no file is uploaded)</label>
+    <input type="text" class="form-control" name="image_url" value="{{ product.image_url if product else '' }}">
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}

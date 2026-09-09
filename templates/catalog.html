@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4">Catalog</h1>
+
+<form class="row g-3 mb-4" method="get">
+  <div class="col-md-4">
+    <label class="form-label">Category</label>
+    <select class="form-select" name="category">
+      <option value="">All</option>
+      {% for c in categories %}
+      <option value="{{ c }}" {% if c == selected_category %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Size</label>
+    <select class="form-select" name="size">
+      <option value="">All</option>
+      {% for s in sizes %}
+      <option value="{{ s }}" {% if s == selected_size %}selected{% endif %}>{{ s }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Max Price</label>
+    <input type="number" class="form-control" name="max_price" value="{{ selected_max_price }}" step="0.01" min="0">
+  </div>
+  <div class="col-md-1 d-flex align-items-end">
+    <button class="btn btn-primary w-100" type="submit">Filter</button>
+  </div>
+</form>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for product in products %}
+  <div class="col">
+    <div class="card h-100">
+      {% if product.image_url %}
+      <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text text-muted">{{ product.category }}{% if product.size %} · {{ product.size }}{% endif %}</p>
+        <p class="card-text fw-bold">₹{{ "%.2f"|format(product.price) }}</p>
+        {% if product.is_low_stock %}<span class="badge bg-warning text-dark">Low stock</span>{% endif %}
+        <div class="mt-2">
+          <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-outline-primary btn-sm">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p class="text-muted">No products match your filters.</p>
+  {% endfor %}
+</div>
+{% endblock %}
