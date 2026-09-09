@@ -52,6 +52,11 @@ def create_app():
         secret_key = "dev-secret-change-me"
     app.config["SECRET_KEY"] = secret_key
 
+    # First run on a fresh clone: the database folder and the upload folder are
+    # gitignored, so create them here or SQLite cannot open its file.
+    os.makedirs(os.path.join(BASE_DIR, "instance"), exist_ok=True)
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
+
     default_db_uri = "sqlite:///" + os.path.join(BASE_DIR, "instance", "shop.db")
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", default_db_uri)
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
