@@ -1,0 +1,287 @@
+/* ============================================================
+   Gini's Boutique — theme
+   Palette + type tokens live here; change once, restyle whole site.
+   ============================================================ */
+:root {
+  /* Palette drawn from the Gini's Boutique logo (coffee-brown on cream) */
+  --brand:        #705135;   /* logo coffee brown */
+  --brand-dark:   #553D28;
+  --gold:         #C6A15B;   /* antique matte gold accent */
+  --gold-soft:    #E7D6B0;
+  --green:        #46331F;   /* deep espresso (dark bands) */
+  --ink:          #3A2C1F;   /* warm brown-black text */
+  --ivory:        #FAF6EE;   /* warm cream canvas (matches logo ground) */
+  --blush:        #EFE4D4;   /* soft sand card/section tint */
+  --muted:        #8a7b69;
+
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body:    "Jost", "Segoe UI", system-ui, sans-serif;
+}
+
+* { -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--ivory);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4, .display, .navbar-brand {
+  font-family: var(--font-display);
+  color: var(--ink);
+  letter-spacing: .3px;
+}
+
+a { color: var(--brand); text-decoration: none; }
+a:hover { color: var(--brand-dark); }
+
+/* ---------- Top announcement bar ---------- */
+.topbar {
+  background: var(--green);
+  color: var(--gold-soft);
+  font-size: .78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 7px 12px;
+}
+
+/* ---------- Nav ---------- */
+.site-nav {
+  background: var(--ivory);
+  border-bottom: 1px solid var(--gold);
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+.navbar-brand { display: flex; align-items: center; line-height: 1; padding: 0; }
+.brand-logo img {
+  height: 60px;
+  width: auto;
+  /* the logo is a JPEG on a cream ground; multiply melts that ground into the
+     cream nav bar so only the brown artwork shows */
+  mix-blend-mode: multiply;
+}
+.site-nav .nav-link {
+  font-size: .82rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 .35rem;
+  transition: color .25s ease;
+}
+.site-nav .nav-link:hover { color: var(--brand); }
+.site-nav .nav-admin {
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  padding-left: .9rem !important;
+  padding-right: .9rem !important;
+  color: var(--brand);
+}
+
+/* ---------- Buttons ---------- */
+.btn-brand {
+  background: var(--brand);
+  border: 1px solid var(--brand);
+  color: #fff;
+  border-radius: 3px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: .8rem;
+  padding: .7rem 1.8rem;
+  transition: background .25s ease, transform .25s ease;
+}
+.btn-brand:hover { background: var(--brand-dark); color: #fff; transform: translateY(-1px); }
+.btn-outline-brand {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--brand);
+  border-radius: 3px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: .8rem;
+  padding: .65rem 1.7rem;
+  transition: all .25s ease;
+}
+.btn-outline-brand:hover { background: var(--brand); border-color: var(--brand); color: #fff; }
+
+/* ---------- Sections ---------- */
+main { min-height: 60vh; }
+.section { padding: 72px 0; }
+.section-tint { background: var(--blush); }
+.section-head { margin-bottom: 40px; }
+.section-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: .72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .4rem;
+}
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin: 0 0 .4rem;
+  position: relative;
+}
+.section-head.text-center .section-title::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 2px;
+  background: var(--gold);
+  margin: 14px auto 0;
+}
+.section-lead { color: var(--muted); max-width: 620px; margin: 8px auto 0; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 74vh;
+  display: flex;
+  align-items: center;
+  background: url("../img/hero-1.jpeg") center 22% / cover no-repeat;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(45,33,22,.74) 0%, rgba(45,33,22,.40) 55%, rgba(45,33,22,.18) 100%);
+}
+.hero-inner { position: relative; color: #fff; max-width: 620px; padding: 40px 0; }
+.hero-eyebrow {
+  font-size: .78rem; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold-soft); margin-bottom: .6rem;
+}
+.hero-title {
+  font-size: 4.2rem; font-weight: 700; color: #fff; line-height: 1.02; margin: 0 0 1rem;
+}
+.hero-sub { font-size: 1.25rem; color: #f3e8dd; margin-bottom: 1.8rem; font-weight: 300; }
+
+/* ---------- Category tiles ---------- */
+.category-tile {
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  aspect-ratio: 3 / 4;
+  background: var(--brand);
+  color: #fff;
+  border: 1px solid var(--gold);
+  border-radius: 3px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.category-tile:nth-child(2n) { background: var(--green); }
+.category-tile span { position: relative; z-index: 2; }
+.category-tile:hover { color: #fff; transform: translateY(-4px); box-shadow: 0 12px 30px rgba(43,15,25,.25); }
+
+/* ---------- Product card ---------- */
+.product-card { display: block; height: 100%; color: var(--ink); }
+.product-card .img-wrap {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--blush);
+  border-radius: 3px;
+  position: relative;
+}
+.product-card .img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s ease;
+}
+.product-card:hover .img-wrap img { transform: scale(1.05); }
+.product-card .badge-new {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--brand); color: #fff;
+  font-size: .62rem; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 9px; border-radius: 2px;
+}
+.product-card .p-name {
+  font-family: var(--font-body);
+  font-size: .98rem; font-weight: 500;
+  margin: .7rem 0 .15rem; color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.product-card .p-cat { font-size: .74rem; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+.product-card .badge-sale {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--green); color: var(--gold-soft);
+  font-size: .62rem; letter-spacing: 1px; font-weight: 600;
+  padding: 4px 9px; border-radius: 2px;
+}
+.product-card .p-price { font-size: 1.02rem; font-weight: 600; color: var(--brand); margin-top: .2rem; }
+.product-card .p-mrp { color: var(--muted); font-weight: 400; text-decoration: line-through; margin-left: .35rem; font-size: .86rem; }
+
+/* detail-page pricing */
+.detail-mrp { color: var(--muted); text-decoration: line-through; font-size: 1.15rem; margin-left: .5rem; font-weight: 400; }
+.detail-save {
+  display: inline-block; margin-left: .5rem; vertical-align: middle;
+  background: var(--green); color: var(--gold-soft);
+  font-size: .72rem; letter-spacing: .5px; font-weight: 600;
+  padding: 3px 10px; border-radius: 3px;
+}
+.product-card .p-low { font-size: .68rem; color: #b0662a; letter-spacing: .5px; }
+
+/* ---------- Owner / story ---------- */
+.owner-photo {
+  width: 100%; border-radius: 4px;
+  border: 1px solid var(--gold);
+  box-shadow: 0 18px 40px rgba(43,15,25,.15);
+  object-fit: cover; aspect-ratio: 4 / 5;
+}
+.story-text { font-size: 1.35rem; font-family: var(--font-display); font-style: italic; color: var(--ink); line-height: 1.5; }
+.story-sign { color: var(--gold); letter-spacing: 1px; font-weight: 500; margin-top: .3rem; }
+
+/* ---------- Visit band ---------- */
+.visit-band { background: var(--green); color: #fff; }
+.visit-band .section-eyebrow { color: var(--gold-soft); }
+.visit-band .section-title { color: #fff; }
+.visit-band .section-title::after { background: var(--gold); }
+.visit-address { font-size: 1.25rem; font-family: var(--font-display); margin-bottom: .3rem; }
+.visit-contact { color: var(--gold-soft); margin-bottom: 1.4rem; }
+
+/* ---------- Catalog filter bar ---------- */
+.filter-bar {
+  background: #fff; border: 1px solid var(--blush);
+  border-radius: 4px; padding: 1.2rem 1.4rem; margin-bottom: 2rem;
+}
+.filter-bar .form-label { font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.form-control:focus, .form-select:focus {
+  border-color: var(--gold); box-shadow: 0 0 0 .18rem rgba(198,161,91,.25);
+}
+
+/* ---------- Product detail ---------- */
+.detail-img { width: 100%; border-radius: 4px; border: 1px solid var(--blush); }
+.detail-title { font-size: 2.6rem; font-weight: 600; }
+.detail-price { font-size: 1.8rem; color: var(--brand); font-weight: 600; }
+.detail-cat { letter-spacing: 2px; text-transform: uppercase; font-size: .8rem; color: var(--gold); }
+.spec-list { list-style: none; padding: 0; margin: 1.2rem 0; }
+.spec-list li { padding: .5rem 0; border-bottom: 1px solid var(--blush); display: flex; justify-content: space-between; }
+.spec-list li span:first-child { color: var(--muted); letter-spacing: .5px; }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--ink); color: #e9ddcf; padding: 56px 0 22px; margin-top: 0; border-top: 3px solid var(--gold); }
+.footer-brand { font-family: var(--font-display); font-size: 1.7rem; color: #fff; }
+.footer-tag { color: var(--gold); font-size: .82rem; letter-spacing: 1px; }
+.footer-muted { color: #b9ab99; font-size: .9rem; }
+.footer-head { color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-size: .78rem; font-family: var(--font-body); margin-bottom: 1rem; }
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: .5rem; }
+.footer-links a, .footer-social a { color: #d8cbbc; font-size: .9rem; }
+.footer-links a:hover, .footer-social a:hover { color: var(--gold); }
+.footer-social { margin-top: 1rem; display: flex; gap: 1.2rem; }
+.footer-bottom { border-top: 1px solid #4a3f33; margin-top: 2.4rem; padding-top: 1.2rem; color: #8f8474; font-size: .82rem; }
+
+/* ---------- Misc / responsive ---------- */
+.page-head { padding: 48px 0 8px; }
+.page-head .section-title::after { margin-left: 0; }
+@media (max-width: 767px) {
+  .hero-title { font-size: 2.8rem; }
+  .section-title { font-size: 1.9rem; }
+  .section { padding: 48px 0; }
+  .brand-logo img { height: 46px; }
+}
