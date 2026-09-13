@@ -109,6 +109,14 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+        # On a fresh hosted deploy the database starts empty; AUTO_SEED=1 fills it
+        # with the admin login + opening collection so the site is never blank.
+        if os.environ.get("AUTO_SEED"):
+            from seeds import seed_data
+            try:
+                seed_data(admin_password=os.environ.get("ADMIN_PASSWORD", "changeme123"))
+            except Exception:
+                db.session.rollback()
 
     return app
 

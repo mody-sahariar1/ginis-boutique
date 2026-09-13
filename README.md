@@ -6,7 +6,16 @@ dashboard for inventory, sales, expenses, and custom-order requests.
 
 Founder: **Benozir** · Golabari, North 24 Parganas, West Bengal 743423.
 
-## Setup
+## Deploy the live site (one click)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/mody-sahariar1/ginis-boutique)
+
+Click the button, sign in to Render (free), and it reads `render.yaml` to build and
+launch the site at a public `…onrender.com` URL — the database auto-seeds the opening
+collection on first boot. To make that live site private, add a `SITE_PASSWORD`
+environment variable in the Render dashboard (view username defaults to `gini`).
+
+## Setup (run locally)
 
 ```bash
 python3 -m venv .venv
