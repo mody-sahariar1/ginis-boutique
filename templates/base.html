@@ -13,10 +13,6 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-  <div class="topbar text-center">
-    <span>✦ Handpicked ethnic wear · {{ shop.address_area }}, {{ shop.address_state }} · Custom orders welcome ✦</span>
-  </div>
-
   <nav class="navbar navbar-expand-lg site-nav">
     <div class="container">
       <a class="navbar-brand brand-logo" href="{{ url_for('index') }}">
@@ -87,7 +83,7 @@
         </div>
       </div>
       <div class="footer-bottom text-center">
-        &copy; {{ shop.established }}–2026 {{ shop.name }} · Made with care in {{ shop.address_state }}
+        &copy; 2026 {{ shop.name }} · Made with care in {{ shop.address_state }}
       </div>
     </div>
   </footer>

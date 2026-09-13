@@ -20,7 +20,7 @@ SHOP = {
     "tagline": _env("SHOP_TAGLINE", "Handpicked ethnic wear for the modern woman"),
     "intro": _env(
         "SHOP_INTRO",
-        "Sarees, salwar suits, lehengas and everyday kurtis — traditional craft, "
+        "Sarees, salwar suits, lehengas and everyday kurtis. Traditional craft, "
         "thoughtfully curated in West Bengal.",
     ),
     # Owner
@@ -28,9 +28,9 @@ SHOP = {
     "owner_photo": "img/owner-benozir.jpeg",  # under static/
     "owner_note": _env(
         "SHOP_OWNER_NOTE",
-        "Every piece here is chosen by hand — the drape of a saree, the weight of a "
-        "fabric, the finish of an embroidery. I started Gini's Boutique to bring that "
-        "same careful eye to women in our neighbourhood and, now, online.",
+        "Every piece here is chosen by hand, from the drape of a saree to the weight of a "
+        "fabric and the finish of an embroidery. I started Gini's Boutique to bring that "
+        "same careful eye to women in our neighbourhood, and now online.",
     ),
     # Location
     "address_line": _env("SHOP_ADDRESS_LINE", "Golabari"),

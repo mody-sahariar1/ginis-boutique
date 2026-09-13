@@ -79,13 +79,13 @@ contact = fetch("/contact")
 contact = contact.replace(
     '<form method="post">',
     '<form method="post" onsubmit="return false" '
-    'title="Preview — to order, message us on Instagram or call the number shown.">',
+    'title="Preview form. To order, message us on Instagram or call the number shown.">',
 )
 contact = contact.replace(
     "<button type=\"submit\" class=\"btn btn-brand\">Send Request</button>",
     "<button type=\"submit\" class=\"btn btn-brand\">Send Request</button>"
-    "<div class=\"form-text mt-2\">Preview site — to place an order, message us on "
-    "Instagram or call the number listed under “Visit the Boutique”.</div>",
+    "<div class=\"form-text mt-2\">This is a preview. To place an order, message us on "
+    "Instagram or call the number under Visit the Boutique.</div>",
 )
 # also disable the catalog filter form (it needs a server) — keep it visible but inert
 contact = contact  # (contact has no filter form; handled per-page below)

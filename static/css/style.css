@@ -37,15 +37,9 @@ h1, h2, h3, h4, .display, .navbar-brand {
 a { color: var(--brand); text-decoration: none; }
 a:hover { color: var(--brand-dark); }
 
-/* ---------- Top announcement bar ---------- */
-.topbar {
-  background: var(--green);
-  color: var(--gold-soft);
-  font-size: .78rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 7px 12px;
-}
+/* ---------- Layout width ---------- */
+.container { max-width: 1200px; }
+@media (min-width: 1400px) { .container { max-width: 1240px; } }
 
 /* ---------- Nav ---------- */
 .site-nav {
@@ -59,7 +53,7 @@ a:hover { color: var(--brand-dark); }
 }
 .navbar-brand { display: flex; align-items: center; line-height: 1; padding: 0; }
 .brand-logo img {
-  height: 60px;
+  height: clamp(44px, 5.5vw, 60px);
   width: auto;
   /* the logo is a JPEG on a cream ground; multiply melts that ground into the
      cream nav bar so only the brown artwork shows */
@@ -110,7 +104,7 @@ a:hover { color: var(--brand-dark); }
 
 /* ---------- Sections ---------- */
 main { min-height: 60vh; }
-.section { padding: 72px 0; }
+.section { padding: clamp(44px, 7vw, 76px) 0; }
 .section-tint { background: var(--blush); }
 .section-head { margin-bottom: 40px; }
 .section-eyebrow {
@@ -123,7 +117,7 @@ main { min-height: 60vh; }
   margin-bottom: .4rem;
 }
 .section-title {
-  font-size: 2.4rem;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
   font-weight: 600;
   margin: 0 0 .4rem;
   position: relative;
@@ -156,9 +150,9 @@ main { min-height: 60vh; }
   color: var(--gold-soft); margin-bottom: .6rem;
 }
 .hero-title {
-  font-size: 4.2rem; font-weight: 700; color: #fff; line-height: 1.02; margin: 0 0 1rem;
+  font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 700; color: #fff; line-height: 1.03; margin: 0 0 1rem;
 }
-.hero-sub { font-size: 1.25rem; color: #f3e8dd; margin-bottom: 1.8rem; font-weight: 300; }
+.hero-sub { font-size: clamp(1rem, 2.4vw, 1.25rem); color: #f3e8dd; margin-bottom: 1.8rem; font-weight: 300; }
 
 /* ---------- Category tiles ---------- */
 .category-tile {
@@ -170,7 +164,7 @@ main { min-height: 60vh; }
   border: 1px solid var(--gold);
   border-radius: 3px;
   font-family: var(--font-display);
-  font-size: 1.55rem;
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
   padding: 1.1rem;
   position: relative;
   overflow: hidden;
@@ -296,8 +290,6 @@ main { min-height: 60vh; }
 .page-head { padding: 48px 0 8px; }
 .page-head .section-title::after { margin-left: 0; }
 @media (max-width: 767px) {
-  .hero-title { font-size: 2.8rem; }
-  .section-title { font-size: 1.9rem; }
-  .section { padding: 48px 0; }
-  .brand-logo img { height: 46px; }
+  .hero { min-height: 60vh; }
+  .detail-title { font-size: 2rem; }
 }

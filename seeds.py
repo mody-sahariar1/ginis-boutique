@@ -12,13 +12,13 @@ CATALOG = [
     ("Sarees", "White Chanderi Silk Saree", "Free Size", "Chanderi Silk", 999, 6,
      "products/saree-chanderi-white.jpeg", True,
      "A pure ivory Chanderi silk saree with a woven golden zari border and a striped, tasselled "
-     "gold pallu. Featherlight, softly lustrous and quietly regal — the timeless cream-and-gold "
+     "gold pallu. Featherlight, softly lustrous and quietly regal, the timeless cream-and-gold "
      "drape, styled here with a deep-green blouse. From Gini's own collection.",
      1200),
     ("Sarees", "Amethyst Handloom Cotton Saree", "Free Size", "Handloom Cotton", 1450, 14,
      "products/saree-1.jpeg", False,
      "A soft amethyst-purple handloom saree with a fine woven motif and a warm copper-tone border. "
-     "Light, breathable and easy to drape — an everyday saree that still turns heads."),
+     "Light, breathable and easy to drape, an everyday saree that still turns heads."),
     ("Sarees", "Coral Banarasi Silk Saree", "Free Size", "Banarasi Silk", 3200, 6,
      "products/saree-2.jpeg", True,
      "Warm coral silk woven with traditional Banarasi zari buttis and a rich contrast pallu. "
@@ -30,11 +30,11 @@ CATALOG = [
     ("Sarees", "Midnight Black Georgette Party Saree", "Free Size", "Georgette", 2400, 8,
      "products/saree-4.jpeg", True,
      "A sheer black georgette saree with delicate beaded lace on the pallu and skirt. "
-     "Understated and modern — pair it with the coral blouse for a striking contrast."),
+     "Understated and modern. Pair it with the coral blouse for a striking contrast."),
     ("Sarees", "Wine Ready-to-Wear Georgette Saree", "Free Size", "Georgette", 1250, 10,
      "products/dupatta-2.jpeg", False,
      "A plain wine-red georgette saree with a fluid, ready-to-drape fall. Minimal, elegant, and "
-     "endlessly versatile — dress it up with jewellery or keep it clean for the office party."),
+     "endlessly versatile. Dress it up with jewellery or keep it clean for the office party."),
 
     # ---------------- Lehengas ----------------
     ("Lehengas", "Rani Pink Sequin Lehenga", "M", "Net", 5800, 5,
@@ -88,7 +88,7 @@ CATALOG = [
     ("Kurtis", "Rust Red Floral Cotton Kurti", "M", "Cotton", 899, 20,
      "products/kurti-4.jpeg", False,
      "A rust-red printed cotton kurti with a black embroidered placket and mirror buttons. "
-     "Our best-value everyday piece — light, easy, and endlessly wearable."),
+     "Our best-value everyday piece, light, easy and endlessly wearable."),
 
     # ---------------- Dupattas & Stoles ----------------
     ("Dupattas & Stoles", "Beige Kashmiri Sozni Wool Shawl", "Free Size", "Kashmiri Wool", 3400, 4,
