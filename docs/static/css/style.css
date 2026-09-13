@@ -295,6 +295,10 @@ main { min-height: 60vh; }
 .page-head { padding: 48px 0 8px; }
 .page-head .section-title::after { margin-left: 0; }
 @media (max-width: 767px) {
-  .hero { min-height: 60vh; }
+  .hero { min-height: 80vh; }
+  .hero-inner { max-width: 100%; text-align: center; padding: 24px 0; }
+  .hero-title { font-size: clamp(2.6rem, 12vw, 3.8rem); margin-bottom: 1.4rem; }
+  .hero-video { object-position: center; }
+  .hero-inner .btn-lg { padding: .8rem 1.7rem; }
   .detail-title { font-size: 2rem; }
 }
