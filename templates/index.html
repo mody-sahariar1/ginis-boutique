@@ -23,7 +23,8 @@
     <div class="row g-3 g-md-4 justify-content-center">
       {% for c in categories %}
       <div class="col-6 col-md-3">
-        <a class="category-tile" href="{{ url_for('catalog', category=c) }}">
+        <a class="category-tile" href="{{ url_for('catalog', category=c) }}"
+           {% if category_images.get(c) %}style="background-image: url('{{ category_images[c] }}')"{% endif %}>
           <span>{{ c }}</span>
         </a>
       </div>

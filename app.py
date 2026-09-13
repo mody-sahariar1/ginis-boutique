@@ -133,7 +133,26 @@ def register_routes(app):
         if not featured:
             featured = Product.query.order_by(Product.created_at.desc()).limit(8).all()
         categories = [c[0] for c in db.session.query(Product.category).distinct()]
-        return render_template("index.html", featured=featured, categories=categories)
+        # A representative photo per category for the homepage tiles. Curated to
+        # differ from the featured row; falls back to the category's first product.
+        curated = {
+            "Sarees": "/static/img/products/saree-1.jpeg",
+            "Lehengas": "/static/img/products/lehenga-2.jpeg",
+            "Salwar Kameez": "/static/img/products/salwar-3.jpeg",
+            "Kurtis": "/static/img/products/kurti-1.jpeg",
+            "Dupattas & Stoles": "/static/img/products/dupatta-1.jpeg",
+        }
+        category_images = {}
+        for c in categories:
+            img = curated.get(c)
+            if not img:
+                first = Product.query.filter_by(category=c).first()
+                img = first.image_url if first else None
+            category_images[c] = img
+        return render_template(
+            "index.html", featured=featured, categories=categories,
+            category_images=category_images,
+        )
 
     @app.route("/about")
     def about():

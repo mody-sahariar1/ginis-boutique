@@ -34,8 +34,8 @@ client = app.test_client()
 
 
 def rewrite(html):
-    # static assets → relative
-    html = html.replace('href="/static/', 'href="static/').replace('src="/static/', 'src="static/')
+    # static assets → relative (covers href, src, and url('/static/...') in styles)
+    html = html.replace("/static/", "static/")
     # category + product links → their static filenames (do these before /catalog)
     for c, u in cat_url.items():
         html = html.replace(f'href="{u}"', f'href="{cat_file[c]}"')
