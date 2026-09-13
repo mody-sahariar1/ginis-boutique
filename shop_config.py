@@ -28,9 +28,10 @@ SHOP = {
     "owner_photo": "img/owner-benozir.jpeg",  # under static/
     "owner_note": _env(
         "SHOP_OWNER_NOTE",
-        "Every piece here is chosen by hand, from the drape of a saree to the weight of a "
-        "fabric and the finish of an embroidery. I started Gini's Boutique to bring that "
-        "same careful eye to women in our neighbourhood, and now online.",
+        "By day I'm a teacher, and fashion has always been my hobby. Gini's Boutique grew "
+        "out of that love, a way to share the sarees and suits I'm drawn to with women in "
+        "our neighbourhood, and now online. Every piece here is chosen by hand, for its "
+        "drape, its fabric and its finish.",
     ),
     # Location
     "address_line": _env("SHOP_ADDRESS_LINE", "Golabari"),
@@ -38,8 +39,8 @@ SHOP = {
     "address_state": _env("SHOP_ADDRESS_STATE", "West Bengal"),
     "address_pin": _env("SHOP_ADDRESS_PIN", "743423"),
     # Contact (placeholders — fill in real values before publishing, or set via env)
-    "phone": _env("SHOP_PHONE", "+91 98765 43210"),
-    "whatsapp": _env("SHOP_WHATSAPP", "+91 98765 43210"),
+    "phone": _env("SHOP_PHONE", "+91 83349 01082"),
+    "whatsapp": _env("SHOP_WHATSAPP", "+91 83349 01082"),
     "email": _env("SHOP_EMAIL", "hello@ginisboutique.in"),
     "instagram": _env("SHOP_INSTAGRAM", "ginisboutique"),
     "facebook": _env("SHOP_FACEBOOK", "ginisboutique"),
