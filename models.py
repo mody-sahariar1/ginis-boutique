@@ -27,10 +27,23 @@ class Product(db.Model):
     category = db.Column(db.String(60), nullable=False)
     size = db.Column(db.String(20), nullable=True)
     material = db.Column(db.String(80), nullable=True)
-    price = db.Column(db.Float, nullable=False)
+    price = db.Column(db.Float, nullable=False)            # selling price
+    original_price = db.Column(db.Float, nullable=True)    # MRP / struck-through price
     quantity = db.Column(db.Integer, nullable=False, default=0)
     image_url = db.Column(db.String(255), nullable=True)
+    description = db.Column(db.Text, nullable=True)
+    is_featured = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    @property
+    def is_on_sale(self):
+        return bool(self.original_price and self.original_price > self.price)
+
+    @property
+    def discount_pct(self):
+        if self.is_on_sale:
+            return round((1 - self.price / self.original_price) * 100)
+        return 0
 
     sales = db.relationship("Sale", backref="product", lazy=True)
 

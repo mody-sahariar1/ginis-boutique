@@ -1,29 +1,88 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="p-5 mb-4 bg-body-tertiary rounded-3 text-center">
-  <h1 class="display-5 fw-bold">MODI'S CLOTHS SHOP</h1>
-  <p class="fs-5">Kids wear, uniforms, sports kits, shirts, frocks & more.</p>
-  <a class="btn btn-primary btn-lg" href="{{ url_for('catalog') }}">Browse Catalog</a>
-</div>
 
-<h2 class="mb-3">Featured Items</h2>
-<div class="row row-cols-1 row-cols-md-4 g-4">
-  {% for product in featured %}
-  <div class="col">
-    <div class="card h-100">
-      {% if product.image_url %}
-      <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
-      {% endif %}
-      <div class="card-body">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text text-muted">{{ product.category }}{% if product.size %} · {{ product.size }}{% endif %}</p>
-        <p class="card-text fw-bold">₹{{ "%.2f"|format(product.price) }}</p>
-        <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-outline-primary btn-sm">View</a>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-inner">
+    <p class="hero-eyebrow">{{ shop.address_area }} · {{ shop.address_state }}</p>
+    <h1 class="hero-title">{{ shop.name }}</h1>
+    <p class="hero-sub">{{ shop.tagline }}</p>
+    <a class="btn btn-brand btn-lg" href="{{ url_for('catalog') }}">Explore the Collection</a>
+  </div>
+</section>
+
+<!-- Categories -->
+{% if categories %}
+<section class="section">
+  <div class="container">
+    <div class="section-head text-center">
+      <span class="section-eyebrow">Shop by</span>
+      <h2 class="section-title">Categories</h2>
+    </div>
+    <div class="row g-3 g-md-4 justify-content-center">
+      {% for c in categories %}
+      <div class="col-6 col-md-3">
+        <a class="category-tile" href="{{ url_for('catalog', category=c) }}">
+          <span>{{ c }}</span>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Featured -->
+<section class="section section-tint">
+  <div class="container">
+    <div class="section-head text-center">
+      <span class="section-eyebrow">Handpicked</span>
+      <h2 class="section-title">Featured Pieces</h2>
+      <p class="section-lead">{{ shop.intro }}</p>
+    </div>
+    <div class="row row-cols-2 row-cols-md-4 g-3 g-md-4">
+      {% for product in featured %}
+      <div class="col">
+        {% include "_product_card.html" %}
+      </div>
+      {% else %}
+      <p class="text-muted text-center">New pieces arriving soon.</p>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+      <a class="btn btn-outline-brand" href="{{ url_for('catalog') }}">View Full Catalog</a>
+    </div>
+  </div>
+</section>
+
+<!-- Brand story / owner -->
+<section class="section">
+  <div class="container">
+    <div class="row align-items-center g-4 g-lg-5">
+      <div class="col-md-5">
+        <img src="{{ url_for('static', filename=shop.owner_photo) }}" alt="{{ shop.owner_name }}, founder of {{ shop.name }}" class="owner-photo">
+      </div>
+      <div class="col-md-7">
+        <span class="section-eyebrow">Our Story</span>
+        <h2 class="section-title text-start">Curated by {{ shop.owner_name }}</h2>
+        <p class="story-text">“{{ shop.owner_note }}”</p>
+        <p class="story-sign">— {{ shop.owner_name }}, Founder</p>
+        <a class="btn btn-outline-brand mt-2" href="{{ url_for('about') }}">Read More</a>
       </div>
     </div>
   </div>
-  {% else %}
-  <p class="text-muted">No products yet. Add some from the admin dashboard.</p>
-  {% endfor %}
-</div>
+</section>
+
+<!-- Visit us -->
+<section class="section visit-band">
+  <div class="container text-center">
+    <span class="section-eyebrow">Come Say Hello</span>
+    <h2 class="section-title">Visit the Boutique</h2>
+    <p class="visit-address">{{ shop_address }}</p>
+    <p class="visit-contact">📞 {{ shop.phone }} &nbsp;·&nbsp; ✉ {{ shop.email }}</p>
+    <a class="btn btn-brand" href="{{ url_for('contact') }}">Request a Custom Order</a>
+  </div>
+</section>
+
 {% endblock %}

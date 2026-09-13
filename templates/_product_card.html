@@ -1,0 +1,16 @@
+<a class="product-card" href="{{ url_for('product_detail', product_id=product.id) }}">
+  <div class="img-wrap">
+    {% if product.image_url %}
+    <img src="{{ product.image_url }}" alt="{{ product.name }}" loading="lazy">
+    {% endif %}
+    {% if product.is_on_sale %}<span class="badge-sale">{{ product.discount_pct }}% OFF</span>
+    {% elif product.is_featured %}<span class="badge-new">New</span>{% endif %}
+  </div>
+  <div class="p-cat">{{ product.category }}</div>
+  <div class="p-name">{{ product.name }}</div>
+  <div class="p-price">
+    {{ shop.currency }}{{ "%.0f"|format(product.price) }}
+    {% if product.is_on_sale %}<span class="p-mrp">{{ shop.currency }}{{ "%.0f"|format(product.original_price) }}</span>{% endif %}
+  </div>
+  {% if product.is_low_stock and product.quantity > 0 %}<div class="p-low">Only {{ product.quantity }} left</div>{% endif %}
+</a>

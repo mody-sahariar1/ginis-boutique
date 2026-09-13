@@ -19,8 +19,21 @@
     <input type="text" class="form-control" name="material" value="{{ product.material if product else '' }}">
   </div>
   <div class="mb-3">
-    <label class="form-label">Price</label>
+    <label class="form-label">Description</label>
+    <textarea class="form-control" name="description" rows="3" placeholder="Fabric, work, drape, occasion…">{{ product.description if product and product.description else '' }}</textarea>
+  </div>
+  <div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" name="is_featured" id="is_featured" {% if product and product.is_featured %}checked{% endif %}>
+    <label class="form-check-label" for="is_featured">Feature on homepage</label>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Selling Price</label>
     <input type="number" step="0.01" min="0" class="form-control" name="price" value="{{ product.price if product else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">MRP / Original Price (optional)</label>
+    <input type="number" step="0.01" min="0" class="form-control" name="original_price" value="{{ product.original_price if product and product.original_price else '' }}">
+    <div class="form-text">If higher than the selling price, it shows struck-through with a discount badge.</div>
   </div>
   <div class="mb-3">
     <label class="form-label">Quantity</label>

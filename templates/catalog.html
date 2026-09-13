@@ -1,55 +1,46 @@
 {% extends "base.html" %}
+{% block title %}Shop · {{ shop.name }}{% endblock %}
 {% block content %}
-<h1 class="mb-4">Catalog</h1>
+<div class="container">
+  <div class="section-head page-head">
+    <span class="section-eyebrow">The Collection</span>
+    <h2 class="section-title">{% if selected_category %}{{ selected_category }}{% else %}Shop All{% endif %}</h2>
+  </div>
 
-<form class="row g-3 mb-4" method="get">
-  <div class="col-md-4">
-    <label class="form-label">Category</label>
-    <select class="form-select" name="category">
-      <option value="">All</option>
-      {% for c in categories %}
-      <option value="{{ c }}" {% if c == selected_category %}selected{% endif %}>{{ c }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="col-md-4">
-    <label class="form-label">Size</label>
-    <select class="form-select" name="size">
-      <option value="">All</option>
-      {% for s in sizes %}
-      <option value="{{ s }}" {% if s == selected_size %}selected{% endif %}>{{ s }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="col-md-3">
-    <label class="form-label">Max Price</label>
-    <input type="number" class="form-control" name="max_price" value="{{ selected_max_price }}" step="0.01" min="0">
-  </div>
-  <div class="col-md-1 d-flex align-items-end">
-    <button class="btn btn-primary w-100" type="submit">Filter</button>
-  </div>
-</form>
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for product in products %}
-  <div class="col">
-    <div class="card h-100">
-      {% if product.image_url %}
-      <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
-      {% endif %}
-      <div class="card-body">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text text-muted">{{ product.category }}{% if product.size %} · {{ product.size }}{% endif %}</p>
-        <p class="card-text fw-bold">₹{{ "%.2f"|format(product.price) }}</p>
-        {% if product.is_low_stock %}<span class="badge bg-warning text-dark">Low stock</span>{% endif %}
-        <div class="mt-2">
-          <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-outline-primary btn-sm">View</a>
-        </div>
-      </div>
+  <form class="filter-bar row g-3" method="get">
+    <div class="col-md-4">
+      <label class="form-label">Category</label>
+      <select class="form-select" name="category">
+        <option value="">All Categories</option>
+        {% for c in categories %}
+        <option value="{{ c }}" {% if c == selected_category %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+      </select>
     </div>
+    <div class="col-md-3">
+      <label class="form-label">Size</label>
+      <select class="form-select" name="size">
+        <option value="">All Sizes</option>
+        {% for s in sizes %}
+        <option value="{{ s }}" {% if s == selected_size %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Max Price ({{ shop.currency }})</label>
+      <input type="number" class="form-control" name="max_price" value="{{ selected_max_price }}" step="50" min="0">
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <button class="btn btn-brand w-100" type="submit">Filter</button>
+    </div>
+  </form>
+
+  <div class="row row-cols-2 row-cols-md-4 g-3 g-md-4 pb-5">
+    {% for product in products %}
+    <div class="col">{% include "_product_card.html" %}</div>
+    {% else %}
+    <p class="text-muted">No pieces match your filters yet — try widening your search.</p>
+    {% endfor %}
   </div>
-  {% else %}
-  <p class="text-muted">No products match your filters.</p>
-  {% endfor %}
 </div>
 {% endblock %}

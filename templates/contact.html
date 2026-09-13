@@ -1,19 +1,48 @@
 {% extends "base.html" %}
+{% block title %}Custom Order · {{ shop.name }}{% endblock %}
 {% block content %}
-<h1 class="mb-4">Custom Order Request</h1>
-<form method="post" class="col-md-6">
-  <div class="mb-3">
-    <label class="form-label">Your Name</label>
-    <input type="text" class="form-control" name="customer_name" required>
+<div class="container py-4 py-md-5">
+  <div class="row g-5">
+    <div class="col-md-6">
+      <div class="section-head page-head">
+        <span class="section-eyebrow">Made For You</span>
+        <h2 class="section-title">Custom Order</h2>
+      </div>
+      <p class="text-secondary">
+        Looking for a particular colour, fabric, or size? Tell {{ shop.owner_name }} what you have in
+        mind — a saree for a wedding, a matching set for the family, a blouse stitched to fit —
+        and we'll source or tailor it for you.
+      </p>
+      <form method="post">
+        <div class="mb-3">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-control" name="customer_name" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Phone or WhatsApp</label>
+          <input type="text" class="form-control" name="contact" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">What are you looking for?</label>
+          <textarea class="form-control" name="details" rows="4" placeholder="e.g. Red Banarasi silk saree, size M, needed for a December wedding" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-brand">Send Request</button>
+      </form>
+    </div>
+    <div class="col-md-5 offset-md-1">
+      <div class="section-head page-head">
+        <span class="section-eyebrow">Find Us</span>
+        <h2 class="section-title">Visit the Boutique</h2>
+      </div>
+      <p class="mb-1"><strong>{{ shop.name }}</strong></p>
+      <p class="text-secondary mb-3">{{ shop_address }}</p>
+      <ul class="spec-list">
+        <li><span>Phone</span><span>{{ shop.phone }}</span></li>
+        <li><span>WhatsApp</span><span>{{ shop.whatsapp }}</span></li>
+        <li><span>Email</span><span>{{ shop.email }}</span></li>
+        <li><span>Instagram</span><span>@{{ shop.instagram }}</span></li>
+      </ul>
+    </div>
   </div>
-  <div class="mb-3">
-    <label class="form-label">Phone or Email</label>
-    <input type="text" class="form-control" name="contact" required>
-  </div>
-  <div class="mb-3">
-    <label class="form-label">What do you need?</label>
-    <textarea class="form-control" name="details" rows="4" required></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit Request</button>
-</form>
+</div>
 {% endblock %}

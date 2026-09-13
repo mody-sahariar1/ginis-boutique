@@ -13,6 +13,7 @@ from flask_login import (
 from werkzeug.utils import secure_filename
 
 from models import AdminUser, CustomOrderRequest, Expense, Product, Sale, db
+from shop_config import SHOP, full_address
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = os.path.join(BASE_DIR, "static", "uploads")
@@ -75,6 +76,11 @@ def create_app():
     def load_user(user_id):
         return db.session.get(AdminUser, int(user_id))
 
+    @app.context_processor
+    def inject_shop():
+        # Makes `shop` and `shop_address` available in every template.
+        return {"shop": SHOP, "shop_address": full_address()}
+
     register_routes(app)
 
     with app.app_context():
@@ -86,8 +92,20 @@ def create_app():
 def register_routes(app):
     @app.route("/")
     def index():
-        featured = Product.query.order_by(Product.created_at.desc()).limit(8).all()
-        return render_template("index.html", featured=featured)
+        featured = (
+            Product.query.filter_by(is_featured=True)
+            .order_by(Product.created_at.asc())
+            .limit(8)
+            .all()
+        )
+        if not featured:
+            featured = Product.query.order_by(Product.created_at.desc()).limit(8).all()
+        categories = [c[0] for c in db.session.query(Product.category).distinct()]
+        return render_template("index.html", featured=featured, categories=categories)
+
+    @app.route("/about")
+    def about():
+        return render_template("about.html")
 
     @app.route("/catalog")
     def catalog():
@@ -233,8 +251,11 @@ def register_routes(app):
                 size=request.form.get("size", "").strip() or None,
                 material=request.form.get("material", "").strip() or None,
                 price=float(request.form["price"]),
+                original_price=float(request.form["original_price"]) if request.form.get("original_price", "").strip() else None,
                 quantity=int(request.form.get("quantity", 0)),
                 image_url=image_url,
+                description=request.form.get("description", "").strip() or None,
+                is_featured=bool(request.form.get("is_featured")),
             )
             db.session.add(product)
             db.session.commit()
@@ -252,7 +273,10 @@ def register_routes(app):
             product.size = request.form.get("size", "").strip() or None
             product.material = request.form.get("material", "").strip() or None
             product.price = float(request.form["price"])
+            product.original_price = float(request.form["original_price"]) if request.form.get("original_price", "").strip() else None
             product.quantity = int(request.form.get("quantity", 0))
+            product.description = request.form.get("description", "").strip() or None
+            product.is_featured = bool(request.form.get("is_featured"))
             uploaded_url = save_uploaded_image(request.files.get("image_file"))
             if uploaded_url:
                 product.image_url = uploaded_url

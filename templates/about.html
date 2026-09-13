@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Our Story · {{ shop.name }}{% endblock %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <div class="row align-items-center g-4 g-lg-5">
+      <div class="col-md-5">
+        <img src="{{ url_for('static', filename=shop.owner_photo) }}" alt="{{ shop.owner_name }}, founder of {{ shop.name }}" class="owner-photo">
+      </div>
+      <div class="col-md-7">
+        <span class="section-eyebrow">Our Story</span>
+        <h1 class="section-title text-start">Meet {{ shop.owner_name }}</h1>
+        <p class="story-text">“{{ shop.owner_note }}”</p>
+        <p class="story-sign">— {{ shop.owner_name }}, Founder</p>
+        <p class="text-secondary mt-3">
+          {{ shop.name }} began in {{ shop.address_area }}, {{ shop.address_state }}, with a simple
+          idea: that beautiful, well-made ethnic wear should be within reach for every woman — not
+          just for the big occasions, but for everyday grace too. From handloom sarees to festive
+          lehengas and comfortable daily kurtis, each piece is chosen with the same care
+          {{ shop.owner_name }} would want for her own family.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="container">
+    <div class="section-head text-center">
+      <span class="section-eyebrow">What We Believe</span>
+      <h2 class="section-title">The Gini's Promise</h2>
+    </div>
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <h3 style="color:var(--brand)">Handpicked</h3>
+        <p class="text-secondary">Every saree and suit is personally selected — for drape, fabric, and finish.</p>
+      </div>
+      <div class="col-md-4">
+        <h3 style="color:var(--brand)">Honest Prices</h3>
+        <p class="text-secondary">Boutique quality without the boutique markup, sourced close to home.</p>
+      </div>
+      <div class="col-md-4">
+        <h3 style="color:var(--brand)">Made to Fit</h3>
+        <p class="text-secondary">Custom colours, sizes and stitching — tell us what you need and we'll make it happen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section visit-band">
+  <div class="container text-center">
+    <span class="section-eyebrow">Come Say Hello</span>
+    <h2 class="section-title">Visit the Boutique</h2>
+    <p class="visit-address">{{ shop_address }}</p>
+    <p class="visit-contact">📞 {{ shop.phone }} &nbsp;·&nbsp; ✉ {{ shop.email }}</p>
+    <a class="btn btn-brand" href="{{ url_for('contact') }}">Request a Custom Order</a>
+  </div>
+</section>
+
+{% endblock %}

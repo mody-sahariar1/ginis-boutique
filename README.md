@@ -1,35 +1,57 @@
-# MODI'S CLOTHS SHOP
+# Gini's Boutique
 
-A smart shop management + e-commerce site: product catalog for customers, and an
-admin dashboard for inventory, sales, expenses, and custom order requests.
+A women's traditional ethnic-wear boutique: an elegant storefront (sarees,
+salwar kameez, lehengas, kurtis, dupattas) for customers, plus an admin
+dashboard for inventory, sales, expenses, and custom-order requests.
+
+Founder: **Benozir** · Golabari, North 24 Parganas, West Bengal 743423.
 
 ## Setup
 
-```powershell
-cd C:\Users\saiqu\Projects\MODIs
-python -m venv .venv
-.venv\Scripts\activate
+```bash
+python3 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python seed.py      # creates admin user (admin / changeme123) and sample products
-python app.py        # runs at http://127.0.0.1:5000
+python seed.py      # creates admin (admin / changeme123) + the opening collection
+python app.py       # runs at http://127.0.0.1:5000
 ```
+
+**Change the seeded admin password** after first login — go to **Settings** in
+the nav bar once logged in.
+
+## Make it yours (branding in one place)
+
+All shop identity — name, tagline, owner bio, address, phone, email, social
+handles — lives in **`shop_config.py`** and is injected into every template as
+`shop.*`. Change the boutique's name or hand it to a new owner by editing that
+one file (or by overriding the matching `SHOP_*` environment variables at
+deploy time, which keeps real phone/email out of the source tree). The theme
+palette and fonts are single-sourced too, as CSS variables at the top of
+`static/css/style.css`.
+
+Product photos live under `static/img/products/` and are seeded in `seed.py`;
+the owner portrait is `static/img/owner-benozir.jpeg`.
 
 **Change the seeded admin password** after first login — go to **Settings** in
 the nav bar once logged in.
 
 ## Structure
 
-- `app.py` — Flask routes (catalog, product detail, contact/custom order form,
-  admin login/settings, admin dashboard, product/sale/expense CRUD, image upload)
+- `app.py` — Flask routes (home, catalog, product detail, our-story, contact/
+  custom-order form, admin login/settings, dashboard, product/sale/expense CRUD)
+- `shop_config.py` — **single source of truth for all branding** (name, owner,
+  address, contact, socials); overridable via `SHOP_*` env vars
 - `wsgi.py` — production entry point (`gunicorn wsgi:app`)
 - `Procfile` — process declaration for Heroku-style hosts (Render, Railway, etc.)
-- `models.py` — SQLAlchemy models: `Product`, `Sale`, `Expense`,
-  `CustomOrderRequest`, `AdminUser`
-- `templates/` — Jinja2 templates (Bootstrap 5 + Chart.js via CDN)
-- `static/` — CSS/JS assets; `static/uploads/` holds uploaded product images
-  (gitignored except for a `.gitkeep`)
+- `models.py` — SQLAlchemy models: `Product` (now with `description` +
+  `is_featured`), `Sale`, `Expense`, `CustomOrderRequest`, `AdminUser`
+- `templates/` — Jinja2 templates (Bootstrap 5); `_product_card.html` is the
+  reusable product tile; `base.html` carries the boutique nav + footer
+- `static/css/style.css` — theme tokens (palette + fonts) at the top
+- `static/img/` — hero + product photography; `static/uploads/` holds
+  admin-uploaded product images (gitignored except a `.gitkeep`)
 - `instance/shop.db` — SQLite database (created on first run, gitignored)
-- `seed.py` — one-time admin user + sample product seeding
+- `seed.py` — admin user + the opening collection (18 pieces)
 
 ## What's implemented (MVP)
 

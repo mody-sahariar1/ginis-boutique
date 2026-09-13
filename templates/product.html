@@ -1,27 +1,49 @@
 {% extends "base.html" %}
+{% block title %}{{ product.name }} · {{ shop.name }}{% endblock %}
 {% block content %}
-<div class="row">
-  <div class="col-md-6">
-    {% if product.image_url %}
-    <img src="{{ product.image_url }}" class="img-fluid rounded" alt="{{ product.name }}">
-    {% else %}
-    <div class="bg-body-tertiary rounded d-flex align-items-center justify-content-center" style="height:300px">
-      <span class="text-muted">No image</span>
+<div class="container py-4 py-md-5">
+  <div class="row g-4 g-lg-5">
+    <div class="col-md-6">
+      {% if product.image_url %}
+      <img src="{{ product.image_url }}" class="detail-img" alt="{{ product.name }}">
+      {% else %}
+      <div class="bg-body-tertiary rounded d-flex align-items-center justify-content-center" style="height:420px">
+        <span class="text-muted">No image</span>
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
-  </div>
-  <div class="col-md-6">
-    <h1>{{ product.name }}</h1>
-    <p class="text-muted">{{ product.category }}{% if product.size %} · Size {{ product.size }}{% endif %}</p>
-    {% if product.material %}<p>Material: {{ product.material }}</p>{% endif %}
-    <h3 class="fw-bold">₹{{ "%.2f"|format(product.price) }}</h3>
-    {% if product.quantity > 0 %}
-      <p class="text-success">In stock ({{ product.quantity }} available)</p>
-    {% else %}
-      <p class="text-danger">Out of stock</p>
-    {% endif %}
-    <a href="{{ url_for('contact') }}" class="btn btn-primary">Enquire / Custom Order</a>
-    <a href="{{ url_for('catalog') }}" class="btn btn-outline-secondary">Back to Catalog</a>
+    <div class="col-md-6">
+      <p class="detail-cat">{{ product.category }}</p>
+      <h1 class="detail-title">{{ product.name }}</h1>
+      <p class="detail-price mb-3">
+        {{ shop.currency }}{{ "%.0f"|format(product.price) }}
+        {% if product.is_on_sale %}
+        <span class="detail-mrp">{{ shop.currency }}{{ "%.0f"|format(product.original_price) }}</span>
+        <span class="detail-save">Save {{ shop.currency }}{{ "%.0f"|format(product.original_price - product.price) }} ({{ product.discount_pct }}% off)</span>
+        {% endif %}
+      </p>
+
+      {% if product.description %}
+      <p class="text-secondary">{{ product.description }}</p>
+      {% endif %}
+
+      <ul class="spec-list">
+        {% if product.size %}<li><span>Size</span><span>{{ product.size }}</span></li>{% endif %}
+        {% if product.material %}<li><span>Fabric</span><span>{{ product.material }}</span></li>{% endif %}
+        <li><span>Availability</span>
+          {% if product.quantity > 0 %}<span class="text-success">In stock ({{ product.quantity }})</span>
+          {% else %}<span class="text-danger">Made to order</span>{% endif %}
+        </li>
+      </ul>
+
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        <a href="{{ url_for('contact') }}" class="btn btn-brand">Enquire / Custom Order</a>
+        <a href="{{ url_for('catalog') }}" class="btn btn-outline-brand">Back to Shop</a>
+      </div>
+      <p class="text-muted mt-4 mb-0" style="font-size:.85rem">
+        ✦ Visit us at {{ shop_address }} &nbsp;·&nbsp; 📞 {{ shop.phone }}
+      </p>
+    </div>
   </div>
 </div>
 {% endblock %}
