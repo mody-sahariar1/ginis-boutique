@@ -295,10 +295,34 @@ main { min-height: 60vh; }
 .page-head { padding: 48px 0 8px; }
 .page-head .section-title::after { margin-left: 0; }
 @media (max-width: 767px) {
-  .hero { min-height: 80vh; }
-  .hero-inner { max-width: 100%; text-align: center; padding: 24px 0; }
-  .hero-title { font-size: clamp(2.6rem, 12vw, 3.8rem); margin-bottom: 1.4rem; }
-  .hero-video { object-position: center; }
+  /* Mobile hero: show the WHOLE video as a full-width 16:9 banner (no cropping),
+     with the title + button on the cream ground just below it. */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: var(--ivory);
+  }
+  .hero-video {
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;   /* matches the 1280x720 clip, so nothing is cropped */
+    object-fit: cover;
+  }
+  .hero-overlay { display: none; }
+  .hero-inner {
+    position: static;
+    max-width: 100%;
+    text-align: center;
+    color: var(--ink);
+    padding: 26px 0 6px;
+  }
+  .hero-title {
+    color: var(--brand);
+    font-size: clamp(2.2rem, 10vw, 3.4rem);
+    margin-bottom: 1.2rem;
+  }
   .hero-inner .btn-lg { padding: .8rem 1.7rem; }
   .detail-title { font-size: 2rem; }
 }
