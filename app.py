@@ -81,6 +81,30 @@ def create_app():
         # Makes `shop` and `shop_address` available in every template.
         return {"shop": SHOP, "shop_address": full_address()}
 
+    # Optional site-wide password gate for private previews. When SITE_PASSWORD is
+    # set, the whole site (pages + images) requires HTTP Basic Auth, so a personal
+    # preview link can be shared without being open to anyone who finds the URL.
+    site_user = os.environ.get("SITE_USER", "gini")
+    site_password = os.environ.get("SITE_PASSWORD")
+    if site_password:
+        import secrets as _secrets
+        from flask import Response
+
+        @app.before_request
+        def _private_preview_gate():
+            auth = request.authorization
+            ok = (
+                auth is not None
+                and auth.username == site_user
+                and _secrets.compare_digest(auth.password or "", site_password)
+            )
+            if not ok:
+                return Response(
+                    "Gini's Boutique — private preview. Please sign in.",
+                    401,
+                    {"WWW-Authenticate": 'Basic realm="Gini\'s Boutique preview"'},
+                )
+
     register_routes(app)
 
     with app.app_context():
