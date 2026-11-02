@@ -29,9 +29,9 @@ SHOP = {
     "owner_photo": "img/benozir-portrait.jpg",  # under static/
     "owner_note": _env(
         "SHOP_OWNER_NOTE",
-        "Benozir comes from a village, and she has always loved buying clothes. She also "
-        "saw how hard it is for village women to travel to a good shop and still find the "
-        "best piece for their budget. So she finally opened one close to home.",
+        "In a village, wanting something beautiful can feel like asking for too much. "
+        "Benozir, who has loved clothes all her life, saw how far women had to travel and "
+        "how carefully they had to count. So she opened a small shop of her own, for them.",
     ),
     # Location
     "address_line": _env("SHOP_ADDRESS_LINE", "Near Golabari Pallimangal School and Taki Road, Golabari"),
