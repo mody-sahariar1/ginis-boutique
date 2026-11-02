@@ -441,14 +441,7 @@ body {
   .hero-title { font-size: clamp(2.3rem, 4.4vw, 3.7rem); line-height: 1.1; }
 }
 
-/* ---------- Light effect: follows the mouse, glows on touch ---------- */
-.cursor-light {
-  position: fixed; left: -210px; top: -210px; z-index: 2000;
-  width: 420px; height: 420px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(226,186,104,.30) 0%, rgba(226,186,104,.12) 38%, rgba(226,186,104,0) 70%);
-  pointer-events: none; opacity: 0; transition: opacity .3s ease; will-change: transform;
-}
-.cursor-light.is-on { opacity: 1; }
+/* ---------- Tap glow on phones and tablets ---------- */
 .touch-glow {
   position: fixed; z-index: 2001; width: 220px; height: 220px; margin: -110px 0 0 -110px;
   border-radius: 50%; pointer-events: none;
@@ -458,21 +451,6 @@ body {
 @keyframes touch-glow {
   from { transform: scale(.25); opacity: 1; }
   to   { transform: scale(1.15); opacity: 0; }
-}
-.btn, .chip, .nav-link, .category-tile, .product-card .img-wrap, .owner-photo, .mobile-cta {
-  transition: box-shadow .25s ease, filter .25s ease, background .25s ease, color .25s ease, transform .3s ease;
-}
-.btn:active, .chip:active, .category-tile:active, .product-card:active .img-wrap, .mobile-cta:active {
-  box-shadow: 0 0 26px rgba(226,186,104,.85);
-}
-@media (hover: hover) {
-  .btn:hover, .chip:hover { box-shadow: 0 0 22px rgba(226,186,104,.75); }
-  .nav-link:hover { text-shadow: 0 0 14px rgba(198,161,91,.9); }
-  .category-tile:hover, .product-card:hover .img-wrap { box-shadow: 0 0 30px rgba(226,186,104,.75); filter: brightness(1.06); }
-  .owner-photo:hover { box-shadow: 0 0 34px rgba(226,186,104,.65); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .btn, .chip, .nav-link, .category-tile, .product-card .img-wrap, .owner-photo, .mobile-cta { transition: none; }
 }
 
 /* ---------- Tablets ---------- */
