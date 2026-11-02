@@ -18,15 +18,12 @@
       <a class="navbar-brand brand-logo" href="{{ url_for('index') }}">
         <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="{{ shop.name }}">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
+      <div class="navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('catalog') }}">Shop</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">Our Story</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Ask the Founder</a></li>
+          <li class="nav-item"><a class="nav-link{% if request.endpoint == 'index' %} is-current{% endif %}" href="{{ url_for('index') }}"{% if request.endpoint == 'index' %} aria-current="page"{% endif %}>Home</a></li>
+          <li class="nav-item"><a class="nav-link{% if request.endpoint == 'catalog' %} is-current{% endif %}" href="{{ url_for('catalog') }}"{% if request.endpoint == 'catalog' %} aria-current="page"{% endif %}>Shop</a></li>
+          <li class="nav-item"><a class="nav-link{% if request.endpoint == 'about' %} is-current{% endif %}" href="{{ url_for('about') }}"{% if request.endpoint == 'about' %} aria-current="page"{% endif %}>Our Story</a></li>
+          <li class="nav-item"><a class="nav-link{% if request.endpoint == 'contact' %} is-current{% endif %}" href="{{ url_for('contact') }}"{% if request.endpoint == 'contact' %} aria-current="page"{% endif %}>Ask the Founder</a></li>
           {% if current_user.is_authenticated %}
           <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_settings') }}">Settings</a></li>
@@ -97,5 +94,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ url_for('static', filename='js/tap-glow.js', v=asset_version('js/tap-glow.js')) }}"></script>
+  <script src="{{ url_for('static', filename='js/nav-scroll.js', v=asset_version('js/nav-scroll.js')) }}"></script>
 </body>
 </html>
