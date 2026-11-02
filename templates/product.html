@@ -17,11 +17,13 @@
       <p class="detail-cat">{{ product.category }}</p>
       <h1 class="detail-title">{{ product.name }}</h1>
       <p class="detail-price mb-3">
+        {% if product.price > 0 %}
         {{ shop.currency }}{{ "%.0f"|format(product.price) }}
         {% if product.is_on_sale %}
         <span class="detail-mrp">{{ shop.currency }}{{ "%.0f"|format(product.original_price) }}</span>
         <span class="detail-save">Save {{ shop.currency }}{{ "%.0f"|format(product.original_price - product.price) }} ({{ product.discount_pct }}% off)</span>
         {% endif %}
+        {% else %}Ask for price{% endif %}
       </p>
 
       {% if product.description %}
@@ -37,11 +39,15 @@
         </li>
       </ul>
 
+      {% if product.price > 0 %}
       {% set order_message = "Hi Benozir, I saw this on your website: " ~ product.name ~ " (" ~ shop.currency ~ "%.0f"|format(product.price) ~ "). Is it still available?" %}
+      {% else %}
+      {% set order_message = "Hi Benozir, I saw this on your website: " ~ product.name ~ ". What is the price, and is it still available?" %}
+      {% endif %}
       <a href="{{ whatsapp_url(order_message) }}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block-lg">
         {% if product.quantity > 0 %}Order on WhatsApp{% else %}Ask for something similar{% endif %}
       </a>
-      <p class="buy-note">Your message is written for you. Press send and Benozir will tell you if this piece is still here and how to get it.</p>
+      <p class="buy-note">Your message is written for you. Press send, tell her your size, and Benozir will let you know if this piece is still here and how to get it.</p>
       <a href="{{ url_for('catalog') }}" class="back-link">Back to the shop</a>
 
       <div class="few-note">

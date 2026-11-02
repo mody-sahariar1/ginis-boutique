@@ -38,7 +38,7 @@ deploy time, which keeps real phone/email out of the source tree). The theme
 palette and fonts are single-sourced too, as CSS variables at the top of
 `static/css/style.css`.
 
-Product photos live under `static/img/products/` and are seeded in `seed.py`;
+Product photos live under `static/img/shop/` and are seeded in `seed.py`;
 the owner portrait is `static/img/owner-benozir.jpeg`.
 
 **Change the seeded admin password** after first login — go to **Settings** in

@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 
 from flask_login import UserMixin
@@ -46,6 +47,18 @@ class Product(db.Model):
         return 0
 
     sales = db.relationship("Sale", backref="product", lazy=True)
+
+    @property
+    def card_image_url(self):
+        """The cropped thumbnail for this photo, if one exists, else the photo itself."""
+        url = self.image_url or ""
+        root, ext = os.path.splitext(url)
+        thumb = f"{root}-card{ext}"
+        if url.startswith("/static/") and os.path.exists(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), thumb.lstrip("/"))
+        ):
+            return thumb
+        return url
 
     @property
     def is_low_stock(self):

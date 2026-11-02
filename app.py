@@ -136,11 +136,10 @@ def register_routes(app):
         # A representative photo per category for the homepage tiles. Curated to
         # differ from the featured row; falls back to the category's first product.
         curated = {
-            "Sarees": "/static/img/products/saree-1.jpeg",
-            "Lehengas": "/static/img/products/lehenga-2.jpeg",
-            "Salwar Kameez": "/static/img/products/salwar-3.jpeg",
-            "Kurtis": "/static/img/products/kurti-1.jpeg",
-            "Dupattas & Stoles": "/static/img/products/dupatta-1.jpeg",
+            "Sarees": "/static/img/shop/p32-card.jpg",
+            "Kurtis & Kurti Sets": "/static/img/shop/p23-card.jpg",
+            "Suits with Dupatta": "/static/img/shop/p16-card.jpg",
+            "Gowns & Sharara": "/static/img/shop/p47-card.jpg",
         }
         category_images = {}
         for c in categories:

@@ -21,7 +21,7 @@ SHOP = {
     "tagline": _env("SHOP_TAGLINE", "Good clothes, close to home"),
     "intro": _env(
         "SHOP_INTRO",
-        "Sarees, suits, lehengas and kurtis chosen by Benozir for women in and around "
+        "Sarees, kurti sets, suits and gowns chosen by Benozir for women in and around "
         "Golabari, so a good outfit on a fair budget does not need a long journey.",
     ),
     # Owner

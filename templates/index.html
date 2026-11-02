@@ -11,7 +11,7 @@
   <div class="container hero-inner">
     <p class="hero-eyebrow">{{ shop.name }} · Golabari</p>
     <h1 class="hero-title">{{ shop.tagline }}.</h1>
-    <p class="hero-sub">Sarees, suits and kurtis chosen by {{ shop.owner_name }}, at prices that fit a real budget. No long journey needed.</p>
+    <p class="hero-sub">Chosen by {{ shop.owner_name }}, at prices that fit a real budget. Sarees from {{ shop.currency }}560 and kurti sets from {{ shop.currency }}570. No long journey needed.</p>
     <div class="hero-actions">
       <a class="btn btn-brand btn-lg" href="{{ url_for('catalog') }}">See what is in the shop</a>
       <a class="btn btn-whatsapp btn-lg" href="{{ whatsapp_url('Hi Benozir, I saw your website. What pieces do you have right now?') }}" target="_blank" rel="noopener">Ask on WhatsApp</a>
