@@ -18,7 +18,7 @@ def _env(key, default):
 SHOP = {
     "name": _env("SHOP_NAME", "Gini's Boutique"),
     "short_name": _env("SHOP_SHORT_NAME", "Gini's"),
-    "tagline": _env("SHOP_TAGLINE", "Good clothes, close to home"),
+    "tagline": _env("SHOP_TAGLINE", "Feel beautiful, on any budget"),
     "intro": _env(
         "SHOP_INTRO",
         "Sarees, kurti sets, suits and gowns chosen by Benozir for women in and around "
