@@ -110,4 +110,4 @@ billing decisions are yours to make.
 
 ## Credits
 
-Home page video: Capture Point on Pexels (https://www.pexels.com/video/traditional-bengali-woman-in-rural-setting-40290375/), free under the Pexels license. She is a stock model, not a customer or Benozir, so never present her as either.
+Home page video: a stock clip on Pexels (https://www.pexels.com/video/elegant-woman-in-black-saree-walking-outdoors-36520415/), free under the Pexels license. She is a stock model, not a customer or Benozir, so never present her as either.
