@@ -59,11 +59,8 @@ a:hover { color: var(--brand-dark); }
 }
 .navbar-brand { display: flex; align-items: center; line-height: 1; padding: 0; }
 .brand-logo img {
-  height: clamp(44px, 5.5vw, 60px);
+  height: clamp(52px, 5.5vw, 62px);
   width: auto;
-  /* the logo is a JPEG on a cream ground; multiply melts that ground into the
-     cream nav bar so only the brown artwork shows */
-  mix-blend-mode: multiply;
 }
 .site-nav .nav-link {
   font-size: .82rem;
@@ -477,31 +474,28 @@ body {
   input, textarea, select { font-size: 16px !important; }  /* stops phones zooming into the form */
 }
 
-/* ---------- Phones and tablets: links always visible, no menu icon ---------- */
+/* ---------- Phones and tablets: centred logo, links always visible ---------- */
 .site-nav .nav-link.is-current { color: var(--brand); box-shadow: inset 0 -2px 0 var(--gold); }
 @media (max-width: 991.98px) {
-  .site-nav { transition: transform .25s ease; padding-top: .35rem; padding-bottom: 0; }
+  .site-nav { transition: transform .25s ease; padding-top: .5rem; padding-bottom: 0; }
   .site-nav.nav-hidden { transform: translateY(-100%); }
-  .site-nav .container { flex-wrap: wrap; }
-  .site-nav .navbar-collapse { display: block; flex: 1 0 100%; }
+  .site-nav .container { flex-direction: column; flex-wrap: nowrap; align-items: center; }
+  .site-nav .navbar-brand { margin: 0 auto .1rem; }
+  .site-nav .navbar-collapse { display: block; flex: none; width: 100%; }
   .site-nav .navbar-nav {
-    flex-direction: row; justify-content: space-between; align-items: center;
-    flex-wrap: wrap;
+    flex-direction: row; justify-content: space-evenly; align-items: center; flex-wrap: wrap;
   }
   .site-nav .nav-item.ms-lg-2 { display: none; }  /* the admin link is not for customers */
   .site-nav .nav-link {
     margin: 0; padding: .55rem .15rem;
     font-size: .88rem; letter-spacing: .2px; text-transform: none; white-space: nowrap;
   }
-  .brand-logo img { height: 38px; }
+  .brand-logo img { height: 58px; }
 }
 @media (min-width: 576px) and (max-width: 991.98px) {
-  /* Tablets have room for the logo and links on one line */
-  .site-nav { padding-bottom: .35rem; }
-  .site-nav .container { flex-wrap: nowrap; }
-  .site-nav .navbar-collapse { flex: 1 1 auto; }
-  .site-nav .navbar-nav { justify-content: flex-end; gap: 1.6rem; }
+  .site-nav .navbar-nav { justify-content: center; gap: 2.4rem; }
   .site-nav .nav-link { font-size: .95rem; }
+  .brand-logo img { height: 64px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .site-nav { transition: none; }
