@@ -107,3 +107,7 @@ billing decisions are yours to make.
 - Product demand/analytics beyond the revenue chart (best sellers, low
   movers)
 - Move off SQLite to Postgres once there's real traffic
+
+## Credits
+
+Home page video: Capture Point on Pexels (https://www.pexels.com/video/traditional-bengali-woman-in-rural-setting-40290375/), free under the Pexels license. She is a stock model, not a customer or Benozir, so never present her as either.

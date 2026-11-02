@@ -383,8 +383,8 @@ body {
 .page-head { padding: 48px 0 8px; }
 .page-head .section-title::after { margin-left: 0; }
 @media (max-width: 767px) {
-  /* Mobile hero: show the WHOLE video as a full-width 16:9 banner (no cropping),
-     with the title + button on the cream ground just below it. */
+  /* Mobile hero: the tall video on top, with the title + button on the cream
+     ground just below it. */
   .hero {
     display: flex;
     flex-direction: column;
@@ -395,8 +395,9 @@ body {
     position: static;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 9;   /* matches the 1280x720 clip, so nothing is cropped */
+    aspect-ratio: 4 / 5;    /* the clip is tall, so show it tall on phones */
     object-fit: cover;
+    object-position: center 45%;
   }
   .hero-overlay { display: none; }
   .hero-inner {
@@ -426,4 +427,14 @@ body {
   }
   .mobile-cta:hover { color: #fff; }
   body { padding-bottom: 70px; }
+}
+
+/* ---------- Desktop hero: words on the left, the tall video on the right ---------- */
+@media (min-width: 768px) {
+  .hero { background: var(--green); min-height: 80vh; }
+  .hero-video { left: auto; right: 0; width: 44%; object-position: center 50%; }
+  .hero-overlay { background: linear-gradient(90deg, var(--green) 56%, rgba(70,51,31,0) 68%); }
+  .hero-inner { max-width: 1200px; padding: 40px 12px; }
+  .hero-inner > * { max-width: 54%; }
+  .hero-title { font-size: clamp(2.3rem, 4.4vw, 3.7rem); line-height: 1.1; }
 }
