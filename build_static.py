@@ -2,7 +2,7 @@
 
 Renders every browsable page via the Flask test client, rewrites root-absolute
 URLs to relative ones (so it works under /ginis-boutique/), strips the admin
-link, and neutralises the two server-side forms. Run: python build_static.py
+link, and turns the custom order form into a WhatsApp message. Run: python build_static.py
 """
 
 import os
@@ -13,6 +13,7 @@ from flask import url_for
 
 from app import app
 from models import Product
+from shop_config import SHOP
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "docs")
@@ -74,21 +75,20 @@ for p in products:
     save(f"product-{p.id}.html", fetch(prod_url[p.id]))
 save("about.html", fetch("/about"))
 
-# contact — neutralise the POST form for a static preview
+# contact: there is no server here, so the request form opens WhatsApp instead
+wa_digits = "".join(ch for ch in SHOP["whatsapp"] if ch.isdigit())
 contact = fetch("/contact")
 contact = contact.replace(
     '<form method="post">',
-    '<form method="post" onsubmit="return false" '
-    'title="Preview form. To order, message us on Instagram or call the number shown.">',
+    '<form method="post" onsubmit="var f=this.elements;'
+    "window.open('https://wa.me/" + wa_digits + "?text='+encodeURIComponent("
+    "'Hi Benozir, I am '+f.customer_name.value+'. My number is '+f.contact.value+'. "
+    "I am looking for: '+f.details.value),'_blank');return false;\">",
 )
 contact = contact.replace(
-    "<button type=\"submit\" class=\"btn btn-brand\">Send Request</button>",
-    "<button type=\"submit\" class=\"btn btn-brand\">Send Request</button>"
-    "<div class=\"form-text mt-2\">This is a preview. To place an order, message us on "
-    "Instagram or call the number under Visit the Boutique.</div>",
+    '<button type="submit" class="btn btn-brand">Send Request</button>',
+    '<button type="submit" class="btn btn-whatsapp">Send on WhatsApp</button>',
 )
-# also disable the catalog filter form (it needs a server) — keep it visible but inert
-contact = contact  # (contact has no filter form; handled per-page below)
 save("contact.html", contact)
 
 # copy assets + disable Jekyll processing

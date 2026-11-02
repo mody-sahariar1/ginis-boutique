@@ -13,7 +13,7 @@ from flask_login import (
 from werkzeug.utils import secure_filename
 
 from models import AdminUser, CustomOrderRequest, Expense, Product, Sale, db
-from shop_config import SHOP, full_address
+from shop_config import SHOP, full_address, whatsapp_url
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = os.path.join(BASE_DIR, "static", "uploads")
@@ -79,7 +79,7 @@ def create_app():
     @app.context_processor
     def inject_shop():
         # Makes `shop` and `shop_address` available in every template.
-        return {"shop": SHOP, "shop_address": full_address()}
+        return {"shop": SHOP, "shop_address": full_address(), "whatsapp_url": whatsapp_url}
 
     # Optional site-wide password gate for private previews. When SITE_PASSWORD is
     # set, the whole site (pages + images) requires HTTP Basic Auth, so a personal

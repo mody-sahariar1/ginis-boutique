@@ -12,5 +12,5 @@
     {{ shop.currency }}{{ "%.0f"|format(product.price) }}
     {% if product.is_on_sale %}<span class="p-mrp">{{ shop.currency }}{{ "%.0f"|format(product.original_price) }}</span>{% endif %}
   </div>
-  {% if product.is_low_stock and product.quantity > 0 %}<div class="p-low">Only {{ product.quantity }} left</div>{% endif %}
+  {% if product.quantity > 0 %}<div class="p-low">Only a few pieces</div>{% else %}<div class="p-low">Sold out</div>{% endif %}
 </a>

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{ product.name }} · {{ shop.name }}{% endblock %}
+{% block mobile_cta %}{% endblock %}
 {% block content %}
 <div class="container py-4 py-md-5">
   <div class="row g-4 g-lg-5">
@@ -31,18 +32,23 @@
         {% if product.size %}<li><span>Size</span><span>{{ product.size }}</span></li>{% endif %}
         {% if product.material %}<li><span>Fabric</span><span>{{ product.material }}</span></li>{% endif %}
         <li><span>Availability</span>
-          {% if product.quantity > 0 %}<span class="text-success">In stock ({{ product.quantity }})</span>
-          {% else %}<span class="text-danger">Made to order</span>{% endif %}
+          {% if product.quantity > 0 %}<span>Only a few pieces</span>
+          {% else %}<span>Sold out</span>{% endif %}
         </li>
       </ul>
 
-      <div class="d-flex flex-wrap gap-2 mt-3">
-        <a href="{{ url_for('contact') }}" class="btn btn-brand">Enquire / Custom Order</a>
-        <a href="{{ url_for('catalog') }}" class="btn btn-outline-brand">Back to Shop</a>
+      {% set order_message = "Hi Benozir, I saw this on your website: " ~ product.name ~ " (" ~ shop.currency ~ "%.0f"|format(product.price) ~ "). Is it still available?" %}
+      <a href="{{ whatsapp_url(order_message) }}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block-lg">
+        {% if product.quantity > 0 %}Order on WhatsApp{% else %}Ask for something similar{% endif %}
+      </a>
+      <p class="buy-note">Your message is written for you. Press send and Benozir will tell you if this piece is still here and how to get it.</p>
+      <a href="{{ url_for('catalog') }}" class="back-link">Back to the shop</a>
+
+      <div class="few-note">
+        <strong>Why so few?</strong> Benozir buys only one to three pieces of most designs. When a piece is gone, it is usually gone, so it is worth asking early.
       </div>
-      <p class="text-muted mt-4 mb-0" style="font-size:.85rem">
-        Visit us at {{ shop_address }} &nbsp;·&nbsp; 📞 {{ shop.phone }}
-      </p>
+
+      <p class="detail-visit">Or come and see it: {{ shop_address }}. Phone {{ shop.phone }}.</p>
     </div>
   </div>
 </div>

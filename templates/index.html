@@ -9,8 +9,41 @@
   </video>
   <div class="hero-overlay"></div>
   <div class="container hero-inner">
-    <h1 class="hero-title">{{ shop.name }}</h1>
-    <a class="btn btn-brand btn-lg" href="{{ url_for('catalog') }}">Explore the Collection</a>
+    <p class="hero-eyebrow">{{ shop.name }} · Golabari</p>
+    <h1 class="hero-title">{{ shop.tagline }}.</h1>
+    <p class="hero-sub">Sarees, suits and kurtis chosen by {{ shop.owner_name }}, at prices that fit a real budget. No long journey needed.</p>
+    <div class="hero-actions">
+      <a class="btn btn-brand btn-lg" href="{{ url_for('catalog') }}">See what is in the shop</a>
+      <a class="btn btn-whatsapp btn-lg" href="{{ whatsapp_url('Hi Benozir, I saw your website. What pieces do you have right now?') }}" target="_blank" rel="noopener">Ask on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- How to buy -->
+<section class="section how-band">
+  <div class="container">
+    <div class="section-head text-center">
+      <span class="section-eyebrow">Easy to buy</span>
+      <h2 class="section-title">Three small steps</h2>
+    </div>
+    <ol class="steps">
+      <li>
+        <span class="step-num">1</span>
+        <h3>Pick a piece</h3>
+        <p>Look through the shop and tap the one you like.</p>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <h3>Press Order on WhatsApp</h3>
+        <p>Your message is already written for you. Just press send.</p>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <h3>{{ shop.owner_name }} replies</h3>
+        <p>She tells you if it is still here and how to get it.</p>
+      </li>
+    </ol>
+    <p class="how-foot">Prefer to see it first? Come to the shop: {{ shop.address_line }}.</p>
   </div>
 </section>
 
@@ -20,11 +53,11 @@
   <div class="container">
     <div class="section-head text-center">
       <span class="section-eyebrow">Shop by</span>
-      <h2 class="section-title">Categories</h2>
+      <h2 class="section-title">What are you looking for?</h2>
     </div>
     <div class="row g-3 g-md-4 justify-content-center">
       {% for c in categories %}
-      <div class="col-6 col-md-3">
+      <div class="col-6 col-md-4 col-lg">
         <a class="category-tile" href="{{ url_for('catalog', category=c) }}"
            {% if category_images.get(c) %}style="background-image: url('{{ category_images[c] }}')"{% endif %}>
           <span>{{ c }}</span>
@@ -40,9 +73,9 @@
 <section class="section section-tint">
   <div class="container">
     <div class="section-head text-center">
-      <span class="section-eyebrow">Handpicked</span>
-      <h2 class="section-title">Featured Pieces</h2>
-      <p class="section-lead">{{ shop.intro }}</p>
+      <span class="section-eyebrow">Only a few of each</span>
+      <h2 class="section-title">Pieces in the shop</h2>
+      <p class="section-lead">{{ shop.owner_name }} buys only one to three pieces of most designs. When a piece is gone, it is usually gone.</p>
     </div>
     <div class="row row-cols-2 row-cols-md-4 g-3 g-md-4">
       {% for product in featured %}
@@ -54,7 +87,7 @@
       {% endfor %}
     </div>
     <div class="text-center mt-4">
-      <a class="btn btn-outline-brand" href="{{ url_for('catalog') }}">View Full Catalog</a>
+      <a class="btn btn-outline-brand" href="{{ url_for('catalog') }}">See everything</a>
     </div>
   </div>
 </section>
@@ -67,24 +100,25 @@
         <img src="{{ url_for('static', filename=shop.owner_photo) }}" alt="{{ shop.owner_name }}, founder of {{ shop.name }}" class="owner-photo">
       </div>
       <div class="col-md-7">
-        <span class="section-eyebrow">Our Story</span>
-        <h2 class="section-title text-start">Curated by {{ shop.owner_name }}</h2>
-        <p class="story-text">“{{ shop.owner_note }}”</p>
-        <p class="story-sign">{{ shop.owner_name }}, Founder</p>
-        <a class="btn btn-outline-brand mt-2" href="{{ url_for('about') }}">Read More</a>
+        <span class="section-eyebrow">Why this shop exists</span>
+        <h2 class="section-title text-start">Good clothes should not be a long journey away.</h2>
+        <p class="story-text">{{ shop.owner_note }}</p>
+        <a class="btn btn-outline-brand mt-2" href="{{ url_for('about') }}">Read her story</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Visit us -->
+<!-- WhatsApp + visit -->
 <section class="section visit-band">
   <div class="container text-center">
-    <span class="section-eyebrow">Come Say Hello</span>
-    <h2 class="section-title">Visit the Boutique</h2>
-    <p class="visit-address">{{ shop_address }}</p>
-    <p class="visit-contact">📞 {{ shop.phone }} &nbsp;·&nbsp; ✉ {{ shop.email }}</p>
-    <a class="btn btn-brand" href="{{ url_for('contact') }}">Request a Custom Order</a>
+    <span class="section-eyebrow">Stay close</span>
+    <h2 class="section-title">Join the WhatsApp group, or come by</h2>
+    <p class="visit-contact">Her customers keep in touch through her WhatsApp group.</p>
+    <a class="btn btn-whatsapp" href="{{ whatsapp_url('Hi Benozir, please add me to your WhatsApp group.') }}" target="_blank" rel="noopener">Ask to join the group</a>
+    <p class="visit-address mt-4">{{ shop_address }}</p>
+    <p class="visit-contact">Phone {{ shop.phone }}</p>
+    <a class="visit-map" href="https://www.google.com/maps/search/?api=1&query=Golabari%20Pallimangal%20School" target="_blank" rel="noopener">Find the school on the map</a>
   </div>
 </section>
 

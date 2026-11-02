@@ -4,23 +4,26 @@
 
 <section class="section">
   <div class="container">
-    <div class="row align-items-center g-4 g-lg-5">
+    <div class="row g-4 g-lg-5">
       <div class="col-md-5">
         <img src="{{ url_for('static', filename=shop.owner_photo) }}" alt="{{ shop.owner_name }}, founder of {{ shop.name }}" class="owner-photo">
+        <p class="photo-caption">{{ shop.owner_name }}, founder of {{ shop.name }}</p>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-7 story-body">
         <span class="section-eyebrow">Our Story</span>
-        <h1 class="section-title text-start">Meet {{ shop.owner_name }}</h1>
-        <p class="story-text">“{{ shop.owner_note }}”</p>
-        <p class="story-sign">{{ shop.owner_name }}, Founder</p>
-        <p class="text-secondary mt-3">
-          {{ shop.owner_name }} is a schoolteacher by profession, and fashion has always been her
-          hobby. {{ shop.name }} began in {{ shop.address_area }}, {{ shop.address_state }}, as a way
-          to turn that passion into something she could share: handloom sarees, festive lehengas and
-          comfortable everyday kurtis, for women who want beautiful ethnic wear for every occasion,
-          not only the big ones. Each piece is picked with the same care she would want for her own
-          family.
-        </p>
+        <h1 class="section-title text-start">Good clothes should not be a long journey away.</h1>
+
+        <p class="story-lead">{{ shop.owner_name }} comes from a village, and she has always loved buying clothes.</p>
+
+        <p>She is a schoolteacher by profession, but clothes were always her happy place. That love also showed her a problem that many women around her simply lived with.</p>
+
+        <p>For a woman in a village, finding something good is hard work. The better shops are far away. Getting there is not easy. And once you arrive, what you find still has to fit the budget you came with.</p>
+
+        <p>Once {{ shop.owner_name }} understood how hard this really was, she finally opened her own shop. {{ shop.name }} is near Golabari Pallimangal School, close to Taki Road, so women nearby can find good clothes on a budget without the long trip.</p>
+
+        <p>She keeps it small. She buys only one to three pieces of most designs, and her customers keep in touch through her WhatsApp group. So the piece you choose is one of very few.</p>
+
+        <a class="btn btn-brand mt-2" href="{{ url_for('catalog') }}">See what is in the shop</a>
       </div>
     </div>
   </div>
@@ -29,21 +32,21 @@
 <section class="section section-tint">
   <div class="container">
     <div class="section-head text-center">
-      <span class="section-eyebrow">What We Believe</span>
-      <h2 class="section-title">The Gini's Promise</h2>
+      <span class="section-eyebrow">What you can expect</span>
+      <h2 class="section-title">The Gini's promise</h2>
     </div>
     <div class="row g-4 text-center">
       <div class="col-md-4">
-        <h3 style="color:var(--brand)">Handpicked</h3>
-        <p class="text-secondary">Every saree and suit is personally selected for drape, fabric, and finish.</p>
+        <h3 class="promise-title">Close to home</h3>
+        <p class="promise-text">A good outfit should not cost you a day of travel.</p>
       </div>
       <div class="col-md-4">
-        <h3 style="color:var(--brand)">Honest Prices</h3>
-        <p class="text-secondary">Boutique quality without the boutique markup, sourced close to home.</p>
+        <h3 class="promise-title">Kept to your budget</h3>
+        <p class="promise-text">{{ shop.owner_name }} looks for the best piece at a price that works for you.</p>
       </div>
       <div class="col-md-4">
-        <h3 style="color:var(--brand)">Made to Fit</h3>
-        <p class="text-secondary">Custom colours, sizes and stitching. Tell us what you need and we'll make it happen.</p>
+        <h3 class="promise-title">Only a few of each</h3>
+        <p class="promise-text">One to three pieces of most designs, chosen by her.</p>
       </div>
     </div>
   </div>
@@ -51,11 +54,11 @@
 
 <section class="section visit-band">
   <div class="container text-center">
-    <span class="section-eyebrow">Come Say Hello</span>
-    <h2 class="section-title">Visit the Boutique</h2>
+    <span class="section-eyebrow">Come say hello</span>
+    <h2 class="section-title">Visit the shop</h2>
     <p class="visit-address">{{ shop_address }}</p>
-    <p class="visit-contact">📞 {{ shop.phone }} &nbsp;·&nbsp; ✉ {{ shop.email }}</p>
-    <a class="btn btn-brand" href="{{ url_for('contact') }}">Request a Custom Order</a>
+    <p class="visit-contact">Phone {{ shop.phone }}</p>
+    <a class="btn btn-whatsapp" href="{{ whatsapp_url('Hi Benozir, I read your story on your website. What pieces do you have right now?') }}" target="_blank" rel="noopener">Ask on WhatsApp</a>
   </div>
 </section>
 

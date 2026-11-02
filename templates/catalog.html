@@ -3,43 +3,24 @@
 {% block content %}
 <div class="container">
   <div class="section-head page-head">
-    <span class="section-eyebrow">The Collection</span>
+    <span class="section-eyebrow">In the shop now</span>
     <h2 class="section-title">{% if selected_category %}{{ selected_category }}{% else %}Shop All{% endif %}</h2>
   </div>
 
-  <form class="filter-bar row g-3" method="get">
-    <div class="col-md-4">
-      <label class="form-label">Category</label>
-      <select class="form-select" name="category">
-        <option value="">All Categories</option>
-        {% for c in categories %}
-        <option value="{{ c }}" {% if c == selected_category %}selected{% endif %}>{{ c }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <div class="col-md-3">
-      <label class="form-label">Size</label>
-      <select class="form-select" name="size">
-        <option value="">All Sizes</option>
-        {% for s in sizes %}
-        <option value="{{ s }}" {% if s == selected_size %}selected{% endif %}>{{ s }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <div class="col-md-3">
-      <label class="form-label">Max Price ({{ shop.currency }})</label>
-      <input type="number" class="form-control" name="max_price" value="{{ selected_max_price }}" step="50" min="0">
-    </div>
-    <div class="col-md-2 d-flex align-items-end">
-      <button class="btn btn-brand w-100" type="submit">Filter</button>
-    </div>
-  </form>
+  <p class="catalog-help">Tap a piece to see it, then order it on WhatsApp. There are only a few of each, so what you see may go quickly.</p>
+
+  <nav class="chips" aria-label="Categories">
+    <a class="chip {% if not selected_category %}is-on{% endif %}" href="{{ url_for('catalog') }}">All</a>
+    {% for c in categories %}
+    <a class="chip {% if c == selected_category %}is-on{% endif %}" href="{{ url_for('catalog', category=c) }}">{{ c }}</a>
+    {% endfor %}
+  </nav>
 
   <div class="row row-cols-2 row-cols-md-4 g-3 g-md-4 pb-5">
     {% for product in products %}
     <div class="col">{% include "_product_card.html" %}</div>
     {% else %}
-    <p class="text-muted">No pieces match your filters yet. Try widening your search.</p>
+    <p class="text-muted">Nothing here right now. Ask Benozir on WhatsApp what has come in.</p>
     {% endfor %}
   </div>
 </div>
