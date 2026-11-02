@@ -322,19 +322,22 @@ body {
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 .hero-actions .btn { font-size: .82rem; padding: .85rem 1.6rem; }
 
-/* ---------- How to buy: one thin line ---------- */
-.how-band { border-bottom: 3px double var(--gold); padding: .9rem 0; }
+/* ---------- How to buy: a small ticket, clear of the hero ---------- */
+.how-band { padding: 1.5rem 12px .5rem; text-align: center; }
 .steps {
-  list-style: none; margin: 0 auto;
-  display: flex; justify-content: center; gap: clamp(1rem, 5vw, 4rem);
+  list-style: none; margin: 0; padding: .6rem 1.9rem;
+  display: inline-flex; align-items: center;
+  background: var(--blush);
+  border: 1px solid var(--gold); border-radius: 999px;
+  outline: 1px solid var(--gold); outline-offset: 3px;
 }
-.steps li { display: flex; align-items: center; gap: .55rem; font-size: 1rem; color: var(--ink); }
-.step-num {
-  flex: none; display: inline-flex; align-items: center; justify-content: center;
-  width: 1.75rem; height: 1.75rem;
-  border: 1px solid var(--gold); border-radius: 50%;
-  font-family: var(--font-display); font-size: .95rem; color: var(--brand);
+.steps li { display: flex; align-items: baseline; gap: .5rem; font-size: 1rem; color: var(--ink); white-space: nowrap; }
+.steps li + li::before {
+  content: ""; align-self: center; flex: none;
+  width: clamp(1.2rem, 3vw, 2.6rem); height: 1px; margin: 0 .9rem;
+  background: var(--gold);
 }
+.step-num { font-family: var(--font-display); font-style: italic; font-size: 1.4rem; line-height: 1; color: var(--sindoor); }
 
 /* ---------- Shop chips ---------- */
 .catalog-help { color: var(--muted); max-width: 640px; margin-bottom: 1.2rem; }
@@ -414,8 +417,11 @@ body {
   .hero-actions { justify-content: center; }
   .hero-actions .btn { width: 100%; }
   .hero-actions .btn-whatsapp { display: none; }  /* the sticky WhatsApp button is always on screen */
-  .steps { gap: .5rem; padding: 0 12px; }
-  .steps li { flex: 1 1 0; flex-direction: column; gap: .3rem; text-align: center; font-size: .86rem; line-height: 1.25; }
+  .how-band { padding: 1.1rem 12px .25rem; }
+  .steps { display: flex; padding: .55rem .5rem; border-radius: 14px; }
+  .steps li { flex: 1 1 0; position: relative; flex-direction: column; align-items: center; gap: .1rem; font-size: .84rem; line-height: 1.2; white-space: normal; text-align: center; }
+  .steps li + li::before { position: absolute; left: 0; top: 20%; bottom: 20%; width: 1px; height: auto; margin: 0; }
+  .step-num { font-size: 1.2rem; }
   .mobile-cta {
     display: block;
     position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 1040;

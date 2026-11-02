@@ -1,3 +1,4 @@
+import hashlib
 import os
 import uuid
 from datetime import datetime, timedelta
@@ -76,10 +77,15 @@ def create_app():
     def load_user(user_id):
         return db.session.get(AdminUser, int(user_id))
 
+    def asset_version(filename):
+        """A short fingerprint of a static file, so a changed file is never served from a stale cache."""
+        with open(os.path.join(app.static_folder, filename), "rb") as f:
+            return hashlib.md5(f.read()).hexdigest()[:8]
+
     @app.context_processor
     def inject_shop():
         # Makes `shop` and `shop_address` available in every template.
-        return {"shop": SHOP, "shop_address": full_address(), "whatsapp_url": whatsapp_url}
+        return {"shop": SHOP, "shop_address": full_address(), "whatsapp_url": whatsapp_url, "asset_version": asset_version}
 
     # Optional site-wide password gate for private previews. When SITE_PASSWORD is
     # set, the whole site (pages + images) requires HTTP Basic Auth, so a personal
