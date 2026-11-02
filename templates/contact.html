@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Ask {{ shop.owner_name }} · {{ shop.name }}{% endblock %}
+{% block title %}Ask the Founder · {{ shop.name }}{% endblock %}
 {% block mobile_cta %}{% endblock %}
 {% block content %}
 <div class="container py-4 py-md-5">
@@ -7,10 +7,10 @@
     <div class="col-md-6">
       <div class="section-head page-head">
         <span class="section-eyebrow">Looking for something?</span>
-        <h1 class="section-title">Ask {{ shop.owner_name }}</h1>
+        <h1 class="section-title">Ask the Founder</h1>
       </div>
       <p class="contact-lead">
-        Tell her what you need: a saree for a wedding, a suit in a certain colour, a size you could
+        Tell {{ shop.owner_name }}, our founder, what you need: a saree for a wedding, a suit in a certain colour, a size you could
         not find here. She will tell you if she has it or can find it.
       </p>
       <form method="post">
