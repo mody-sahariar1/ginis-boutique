@@ -26,7 +26,7 @@ SHOP = {
     ),
     # Owner
     "owner_name": _env("SHOP_OWNER_NAME", "Benozir"),
-    "owner_photo": "img/owner-benozir.jpeg",  # under static/
+    "owner_photo": "img/benozir-portrait.jpg",  # under static/
     "owner_note": _env(
         "SHOP_OWNER_NOTE",
         "Benozir comes from a village, and she has always loved buying clothes. She also "

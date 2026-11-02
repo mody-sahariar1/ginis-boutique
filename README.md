@@ -39,7 +39,7 @@ palette and fonts are single-sourced too, as CSS variables at the top of
 `static/css/style.css`.
 
 Product photos live under `static/img/shop/` and are seeded in `seed.py`;
-the owner portrait is `static/img/owner-benozir.jpeg`.
+the owner portrait is `static/img/benozir-portrait.jpg`.
 
 **Change the seeded admin password** after first login — go to **Settings** in
 the nav bar once logged in.
