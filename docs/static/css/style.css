@@ -322,23 +322,19 @@ body {
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 .hero-actions .btn { font-size: .82rem; padding: .85rem 1.6rem; }
 
-/* ---------- How to buy ---------- */
-.how-band { border-bottom: 3px double var(--gold); }
+/* ---------- How to buy: one thin line ---------- */
+.how-band { border-bottom: 3px double var(--gold); padding: .9rem 0; }
 .steps {
-  list-style: none; padding: 0; margin: 0;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+  list-style: none; margin: 0 auto;
+  display: flex; justify-content: center; gap: clamp(1rem, 5vw, 4rem);
 }
-.steps li { text-align: center; padding: 0 .5rem; }
-.steps h3 { font-size: 1.3rem; margin: .8rem 0 .3rem; }
-.steps p { color: var(--muted); margin: 0; }
+.steps li { display: flex; align-items: center; gap: .55rem; font-size: 1rem; color: var(--ink); }
 .step-num {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 3rem; height: 3rem;
-  border: 1px solid var(--gold); outline: 1px solid var(--gold); outline-offset: 3px;
-  border-radius: 50%;
-  font-family: var(--font-display); font-size: 1.3rem; color: var(--brand);
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 1.75rem; height: 1.75rem;
+  border: 1px solid var(--gold); border-radius: 50%;
+  font-family: var(--font-display); font-size: .95rem; color: var(--brand);
 }
-.how-foot { text-align: center; color: var(--muted); margin: 2.2rem 0 0; }
 
 /* ---------- Shop chips ---------- */
 .catalog-help { color: var(--muted); max-width: 640px; margin-bottom: 1.2rem; }
@@ -418,7 +414,8 @@ body {
   .hero-actions { justify-content: center; }
   .hero-actions .btn { width: 100%; }
   .hero-actions .btn-whatsapp { display: none; }  /* the sticky WhatsApp button is always on screen */
-  .steps { grid-template-columns: 1fr; gap: 1.6rem; }
+  .steps { gap: .5rem; padding: 0 12px; }
+  .steps li { flex: 1 1 0; flex-direction: column; gap: .3rem; text-align: center; font-size: .86rem; line-height: 1.25; }
   .mobile-cta {
     display: block;
     position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 1040;
@@ -463,7 +460,6 @@ body {
   .hero-actions { flex-direction: column; align-items: flex-start; }
   .hero-actions .btn { min-width: 250px; }
   .site-nav .nav-link { padding: .75rem 0; }
-  .steps { gap: 1.2rem; }
 }
 
 /* ---------- Touch screens: comfortable tap targets, nothing that needs a hover ---------- */
