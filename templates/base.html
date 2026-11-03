@@ -53,38 +53,24 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <div class="row gy-4">
-        <div class="col-md-4">
-          <div class="footer-brand">{{ shop.name }}</div>
-          <p class="footer-tag">{{ shop.tagline }}</p>
-          <p class="footer-muted">{{ shop.intro }}</p>
-        </div>
-        <div class="col-md-4">
-          <h6 class="footer-head">Visit Us</h6>
-          <p class="footer-muted mb-1">{{ shop_address }}</p>
-          <p class="footer-muted mb-1">📞 {{ shop.phone }}</p>
-          <p class="footer-muted mb-0"><a href="{{ whatsapp_url('Hi Benozir, I saw your website.') }}" target="_blank" rel="noopener">WhatsApp {{ shop.whatsapp }}</a></p>
-          {% if shop.email %}<p class="footer-muted mt-1 mb-0">✉ {{ shop.email }}</p>{% endif %}
-        </div>
-        <div class="col-md-4">
-          <h6 class="footer-head">Explore</h6>
-          <ul class="footer-links">
-            <li><a href="{{ url_for('catalog') }}">Shop Collection</a></li>
-            <li><a href="{{ url_for('about') }}">Our Story</a></li>
-            <li><a href="{{ url_for('contact') }}">Ask the Founder</a></li>
-          </ul>
-          {% if shop.instagram or shop.facebook %}
-          <div class="footer-social">
-            {% if shop.instagram %}<a href="https://instagram.com/{{ shop.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
-            {% if shop.facebook %}<a href="https://facebook.com/{{ shop.facebook }}" target="_blank" rel="noopener">Facebook</a>{% endif %}
-          </div>
-          {% endif %}
-        </div>
-      </div>
-      <div class="footer-bottom text-center">
-        &copy; 2026 {{ shop.name }} · Made with care in {{ shop.address_state }}
-      </div>
+    <div class="container text-center">
+      <div class="footer-brand">{{ shop.name }}</div>
+      <p class="footer-tag">{{ shop.tagline }}</p>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="{{ url_for('catalog') }}">Shop</a>
+        <a href="{{ url_for('about') }}">Our Story</a>
+        <a href="{{ url_for('contact') }}">Ask the Founder</a>
+        {% if shop.instagram %}<a href="https://instagram.com/{{ shop.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
+        {% if shop.facebook %}<a href="https://facebook.com/{{ shop.facebook }}" target="_blank" rel="noopener">Facebook</a>{% endif %}
+      </nav>
+      <p class="footer-contact">{{ shop.address_short }}</p>
+      <p class="footer-contact">
+        <a href="tel:{{ shop.phone|replace(' ', '') }}">{{ shop.phone }}</a>
+        <span aria-hidden="true">&nbsp;·&nbsp;</span>
+        <a href="{{ whatsapp_url('Hi Benozir, I saw your website.') }}" target="_blank" rel="noopener">WhatsApp</a>
+      </p>
+      {% if shop.email %}<p class="footer-contact">{{ shop.email }}</p>{% endif %}
+      <p class="footer-bottom">&copy; 2026 {{ shop.name }}</p>
     </div>
   </footer>
 
