@@ -90,17 +90,6 @@
   </div>
 </section>
 
-<!-- WhatsApp + visit -->
-<section class="section visit-band">
-  <div class="container text-center">
-    <span class="section-eyebrow">Stay close</span>
-    <h2 class="section-title">Join the WhatsApp group, or come by</h2>
-    <p class="visit-contact">Her customers keep in touch through her WhatsApp group.</p>
-    <a class="btn btn-whatsapp" href="{{ whatsapp_url('Hi Benozir, please add me to your WhatsApp group.') }}" target="_blank" rel="noopener">Ask to join the group</a>
-    <p class="visit-address mt-4">{{ shop_address }}</p>
-    <p class="visit-contact">Phone {{ shop.phone }}</p>
-    <a class="visit-map" href="https://www.google.com/maps/search/?api=1&query=Golabari%20Pallimangal%20School" target="_blank" rel="noopener">Find the school on the map</a>
-  </div>
-</section>
+{% include "_visit_band.html" %}
 
 {% endblock %}

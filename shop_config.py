@@ -34,6 +34,7 @@ SHOP = {
         "how carefully they had to count. So she opened a small shop of her own, for them.",
     ),
     # Location
+    "address_short": _env("SHOP_ADDRESS_SHORT", "Opposite Wisdom World KG School, Golabari"),
     "address_line": _env("SHOP_ADDRESS_LINE", "Opposite Wisdom World KG School, near Golabari Pallimangal School and Taki Road, Golabari"),
     "address_area": _env("SHOP_ADDRESS_AREA", "P.O. Golabari Bazar, P.S. Shasan, North 24 Parganas"),
     "address_state": _env("SHOP_ADDRESS_STATE", "West Bengal"),

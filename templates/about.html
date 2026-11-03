@@ -57,14 +57,6 @@
   </div>
 </section>
 
-<section class="section visit-band">
-  <div class="container text-center">
-    <span class="section-eyebrow">Come say hello</span>
-    <h2 class="section-title">Visit the shop</h2>
-    <p class="visit-address">{{ shop_address }}</p>
-    <p class="visit-contact">Phone {{ shop.phone }}</p>
-    <a class="btn btn-whatsapp" href="{{ whatsapp_url('Hi Benozir, I read your story on your website. What pieces do you have right now?') }}" target="_blank" rel="noopener">Ask on WhatsApp</a>
-  </div>
-</section>
+{% include "_visit_band.html" %}
 
 {% endblock %}

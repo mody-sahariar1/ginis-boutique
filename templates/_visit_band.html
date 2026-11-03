@@ -1,0 +1,21 @@
+<section class="section visit-band">
+  <div class="container">
+    <h2 class="section-title text-center">Come by or say hello</h2>
+    <div class="visit-grid">
+      <div class="visit-item">
+        <h3 class="visit-label">Visit</h3>
+        <p class="visit-main">{{ shop.address_short }}</p>
+        <a class="visit-link" href="https://www.google.com/maps/search/?api=1&query=Golabari%20Pallimangal%20School" target="_blank" rel="noopener">See the area on the map</a>
+      </div>
+      <div class="visit-item">
+        <h3 class="visit-label">Call</h3>
+        <p class="visit-main"><a href="tel:{{ shop.phone|replace(' ', '') }}">{{ shop.phone }}</a></p>
+      </div>
+      <div class="visit-item">
+        <h3 class="visit-label">WhatsApp</h3>
+        <p class="visit-main">Join our customer group</p>
+        <a class="btn btn-whatsapp" href="{{ whatsapp_url('Hi Benozir, please add me to your WhatsApp group.') }}" target="_blank" rel="noopener">Ask to join</a>
+      </div>
+    </div>
+  </div>
+</section>

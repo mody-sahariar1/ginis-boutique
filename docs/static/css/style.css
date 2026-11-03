@@ -256,13 +256,27 @@ main { min-height: 60vh; }
 .story-text { font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); line-height: 1.55; }
 .story-sign { color: var(--gold-text); letter-spacing: 1px; font-weight: 500; margin-top: .3rem; }
 
-/* ---------- Visit band ---------- */
+/* ---------- Visit band: three clear columns ---------- */
 .visit-band { background: var(--green); color: #fff; }
-.visit-band .section-eyebrow { color: var(--gold-soft); }
-.visit-band .section-title { color: #fff; }
-.visit-band .section-title::after { background: var(--gold); }
-.visit-address { font-size: 1.25rem; font-family: var(--font-display); margin-bottom: .3rem; }
-.visit-contact { color: var(--gold-soft); margin-bottom: 1.4rem; }
+.visit-band .section-title { color: #fff; margin-bottom: 2rem; }
+.visit-grid { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 980px; margin: 0 auto; }
+.visit-item { padding: .25rem 1.75rem; text-align: center; }
+.visit-item + .visit-item { border-left: 1px solid rgba(198,161,91,.45); }
+.visit-label {
+  font-family: var(--font-body); font-size: .75rem; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold-soft); margin-bottom: .6rem;
+}
+.visit-main { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.35; margin-bottom: .75rem; }
+.visit-main a { color: #fff; }
+.visit-link { color: var(--gold-soft); font-size: .95rem; text-decoration: underline; text-underline-offset: 3px; }
+.visit-link:hover, .visit-main a:hover { color: #fff; }
+@media (max-width: 767.98px) {
+  .visit-grid { grid-template-columns: 1fr; }
+  .visit-item { padding: 1.1rem 0; }
+  .visit-item:first-child { padding-top: 0; }
+  .visit-item:last-child { padding-bottom: 0; }
+  .visit-item + .visit-item { border-left: 0; border-top: 1px solid rgba(198,161,91,.45); }
+}
 
 /* ---------- Catalog filter bar ---------- */
 .filter-bar {
@@ -368,8 +382,6 @@ body {
 .section-title.text-start { margin-bottom: 1rem; }
 
 /* ---------- Visit band links ---------- */
-.visit-map { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 3px; }
-.visit-map:hover { color: #fff; }
 .visit-map-dark { text-decoration: underline; text-underline-offset: 3px; }
 .site-footer a { color: #d8cbbc; }
 
