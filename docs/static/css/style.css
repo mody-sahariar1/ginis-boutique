@@ -482,6 +482,7 @@ body {
 /* ---------- Touch screens: comfortable tap targets, nothing that needs a hover ---------- */
 @media (hover: none) {
   .chip { padding: .55rem 1.1rem; }
+  .site-nav .nav-link { padding-top: .7rem; padding-bottom: .7rem; }
   .btn { min-height: 46px; }
 }
 @media (max-width: 991.98px) {
