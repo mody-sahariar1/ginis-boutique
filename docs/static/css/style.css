@@ -256,33 +256,26 @@ main { min-height: 60vh; }
 .story-text { font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); line-height: 1.55; }
 .story-sign { color: var(--gold-text); letter-spacing: 1px; font-weight: 500; margin-top: .3rem; }
 
-/* ---------- Visit band: cream arches on warm terracotta ---------- */
-.visit-band { background: #8F4230; color: var(--ink); padding: clamp(36px, 5vw, 56px) 0; }
-.visit-band .section-title { color: #FFF8EC; margin-bottom: 1.75rem; }
-.visit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 980px; margin: 0 auto; }
-.visit-item {
-  background: var(--ivory); padding: 2.4rem 1.25rem 1.4rem; text-align: center;
-  border-radius: 130px 130px 6px 6px;
-  outline: 1px solid rgba(255,248,236,.6); outline-offset: 4px;
-}
+/* ---------- Visit band: quiet, on the same deep brown as the footer ---------- */
+.visit-band { background: var(--green); color: #FFF8EC; padding: clamp(40px, 5vw, 60px) 0 clamp(32px, 4vw, 44px); }
+.visit-band .section-title { color: #FFF8EC; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 2rem; }
+.visit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto; }
+.visit-item { text-align: center; }
 .visit-label {
-  font-family: var(--font-body); font-size: .75rem; font-weight: 500;
-  letter-spacing: 2.5px; text-transform: uppercase; color: #8F4230; margin-bottom: .55rem;
+  font-family: var(--font-body); font-size: .72rem; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: .55rem;
 }
-.visit-main { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.35; color: var(--ink); margin-bottom: .75rem; }
-.visit-main a { color: var(--ink); }
-.visit-link { color: var(--brand); font-size: .95rem; text-decoration: underline; text-underline-offset: 3px; }
-.visit-link:hover, .visit-main a:hover { color: #8F4230; }
+.visit-main { font-family: var(--font-display); font-size: 1.1rem; line-height: 1.4; color: #FFF8EC; margin-bottom: .6rem; }
+.visit-main a { color: #FFF8EC; }
+.visit-link { color: var(--gold-soft); font-size: .92rem; text-decoration: underline; text-underline-offset: 3px; }
+.visit-link:hover, .visit-main a:hover { color: var(--gold); }
+.visit-item .btn-whatsapp {
+  background: transparent; border-color: var(--gold); color: #FFF8EC;
+  padding: .5rem 1.4rem; font-size: .76rem;
+}
+.visit-item .btn-whatsapp:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
 @media (max-width: 767.98px) {
-  .visit-grid { grid-template-columns: 1fr; gap: 1rem; padding: 0 4px; }
-  .visit-item { padding: 1rem 1rem .9rem; border-radius: 14px; }
-  .visit-main { margin-bottom: .5rem; }
-  .visit-item .visit-main:last-child { margin-bottom: 0; }
-}
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .visit-grid { gap: .9rem; }
-  .visit-item { padding: 2rem .9rem 1.2rem; border-radius: 90px 90px 6px 6px; }
-  .visit-main { font-size: 1.05rem; }
+  .visit-grid { grid-template-columns: 1fr; gap: 1.4rem; }
 }
 
 /* ---------- Catalog filter bar ---------- */
@@ -304,16 +297,22 @@ main { min-height: 60vh; }
 .spec-list li { padding: .5rem 0; border-bottom: 1px solid var(--blush); display: flex; justify-content: space-between; }
 .spec-list li span:first-child { color: var(--muted); letter-spacing: .5px; }
 
-/* ---------- Footer: one calm, centred column ---------- */
-.site-footer { background: var(--ink); color: #e9ddcf; padding: 2.75rem 0 1.5rem; border-top: 3px solid var(--gold); }
-.footer-brand { font-family: var(--font-display); font-size: 1.6rem; color: #fff; }
-.footer-tag { color: var(--gold); font-size: .9rem; letter-spacing: .5px; margin: .15rem 0 1.25rem; }
-.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem 1.75rem; margin-bottom: 1.25rem; }
-.footer-links a { color: #fff; font-size: .95rem; padding: .3rem 0; }
-.footer-contact { color: #cdbfae; font-size: .92rem; margin: 0 0 .3rem; }
+/* ---------- Footer: continues the visit band, split by one fine line ---------- */
+.site-footer { background: var(--green); color: #e9ddcf; padding: 0 0 1.25rem; }
+.site-footer .container::before {
+  content: ""; display: block; height: 1px; max-width: 900px; margin: 0 auto 1.75rem;
+  background: rgba(198,161,91,.4);
+}
+main:not(:has(.visit-band)) + .site-footer { padding-top: 2.25rem; }
+main:not(:has(.visit-band)) + .site-footer .container::before { display: none; }
+.footer-brand { font-family: var(--font-display); font-size: 1.3rem; color: #fff; }
+.footer-tag { color: var(--gold); font-size: .85rem; letter-spacing: .5px; margin: .1rem 0 1rem; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem 1.75rem; margin-bottom: 1rem; }
+.footer-links a { color: #FFF8EC; font-size: .92rem; padding: .3rem 0; }
+.footer-contact { color: #cdbfae; font-size: .9rem; margin: 0 0 .3rem; }
 .footer-contact a { color: #cdbfae; text-decoration: underline; text-underline-offset: 3px; }
 .footer-links a:hover, .footer-contact a:hover { color: var(--gold); }
-.footer-bottom { color: #8f8474; font-size: .8rem; margin: 1.25rem 0 0; }
+.footer-bottom { color: #a89a87; font-size: .78rem; margin: 1rem 0 0; }
 
 /* ---------- Vintage warmth: paper grain + double rule ---------- */
 body {

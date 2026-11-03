@@ -63,6 +63,7 @@
         {% if shop.instagram %}<a href="https://instagram.com/{{ shop.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
         {% if shop.facebook %}<a href="https://facebook.com/{{ shop.facebook }}" target="_blank" rel="noopener">Facebook</a>{% endif %}
       </nav>
+      {% block footer_contact %}
       <p class="footer-contact">{{ shop.address_short }}</p>
       <p class="footer-contact">
         <a href="tel:{{ shop.phone|replace(' ', '') }}">{{ shop.phone }}</a>
@@ -70,6 +71,7 @@
         <a href="{{ whatsapp_url('Hi Benozir, I saw your website.') }}" target="_blank" rel="noopener">WhatsApp</a>
       </p>
       {% if shop.email %}<p class="footer-contact">{{ shop.email }}</p>{% endif %}
+      {% endblock %}
       <p class="footer-bottom">&copy; 2026 {{ shop.name }}</p>
     </div>
   </footer>
